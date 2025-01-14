@@ -1,10 +1,11 @@
 import { Pressable, StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 
-const Home = () => {
+
+const Home = ({navigation}) => {
   return (
     <View style={styles.container}>
-      <View style={styles.containerUserName}>
+      <View style={styles.container_userName}>
         <View>
             <Text style={styles.userName_title}>Home Screen</Text>
             <Text style={styles.userName_description}>Hello! what will we do today?</Text>
@@ -30,12 +31,16 @@ const Home = () => {
                 <Text style={styles.tasks_option}>See all</Text>
             </View>
         </View>
-        <View>
+        <View style={styles.container_tasks_component}>
             <Text style={styles.tasks_title}>TASKS COMPONENT</Text>
+            <Pressable onPress={() => navigation.navigate('DetailTask')}><Text style={styles.tasks_title}>TASKS</Text></Pressable>
+            <Pressable><Text style={styles.tasks_title}>TASKS</Text></Pressable>
+            <Pressable><Text style={styles.tasks_title}>TASKS</Text></Pressable>
+            <Pressable><Text style={styles.tasks_title}>TASKS</Text></Pressable>
         </View>
       </View>
       <View style={styles.container_buttonAdd}>
-        <Pressable>
+        <Pressable onPress={() => {}}>
             <Text style={styles.tasks_title}>BUTTON ADD COMPONENT</Text>
         </Pressable>
       </View>
@@ -50,7 +55,7 @@ const styles = StyleSheet.create({
         flex:1,
         backgroundColor: '#141315',
     },
-    containerUserName: {
+    container_userName: {
         marginTop: 80,
         paddingLeft: 30,
         flexDirection: 'row',
@@ -92,6 +97,11 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'flex-end',
         justifyContent: 'flex-end', 
+    },
+    container_tasks_component:{
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        paddingTop: 20,
     },
     tasks_option:{
         color:'#657FB1',
