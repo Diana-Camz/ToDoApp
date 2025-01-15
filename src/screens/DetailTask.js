@@ -1,7 +1,7 @@
 import { Pressable, StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 
-const DetailTask = () => {
+const DetailTask = ({navigation}) => {
   return (
     <View style={styles.container}>
       <View style={styles.container_header}>
@@ -29,7 +29,7 @@ const DetailTask = () => {
           <Text style={styles.name_title}> Description</Text>
         </View>
         <View style={styles.container_buttons_task_detail}>
-          <Pressable onPress={() => {}}><Text style={styles.userName_title}>Edit</Text></Pressable>
+          <Pressable onPress={() => navigation.navigate('EditTask')}><Text style={styles.userName_title}>Edit</Text></Pressable>
           <Pressable onPress={() => {}}><Text style={styles.userName_title}>Delete</Text></Pressable>
         </View>
       </View>
