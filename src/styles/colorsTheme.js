@@ -4,7 +4,7 @@ export const colorsTheme = {
     lightGray: "#282D38", // completed mark outline button
     lightGraySecond: "#6F6F6F", // description titles
     blue: '#273D69', //Add Task
-    lightblue: "#556B96", //custom buttons
+    lightblue: "#556B96", //custom buttons background
     lightBlueSecond: "#657FB1", //Inputs titles
     darkBlue: "#273D69", // Edit task
     darkBlueSecond: "#122342", //Background Inputs and title buttons
