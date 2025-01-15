@@ -7,7 +7,7 @@ export const colorsTheme = {
     lightblue: "#556B96", //custom buttons
     lightBlueSecond: "#657FB1", //Inputs titles
     darkBlue: "#273D69", // Edit task
-    darkBlueSecond: "#122342", //Background Inputs
+    darkBlueSecond: "#122342", //Background Inputs and title buttons
     redTrash: "#FF3434", // Delete task
     red: "#F24337", // High priority
     yellow: "#FFD928", // Medium priority

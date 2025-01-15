@@ -2,7 +2,7 @@ import { StyleSheet } from "react-native";
 import { colorsTheme } from "./colorsTheme";
 
 export const containers = StyleSheet.create({
-  container: {
+  main: {
     paddingHorizontal: 16,
     paddingTop: 60,
     paddingBottom: 20,
