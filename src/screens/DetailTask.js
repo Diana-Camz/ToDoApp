@@ -1,5 +1,7 @@
 import { Pressable, StyleSheet, Text, View } from 'react-native'
 import React from 'react'
+import CustomIcon from '../components/CustomIcon'
+import { colorsTheme } from '../styles/colorsTheme'
 
 const DetailTask = ({navigation}) => {
   return (
@@ -29,8 +31,8 @@ const DetailTask = ({navigation}) => {
           <Text style={styles.name_title}> Description</Text>
         </View>
         <View style={styles.container_buttons_task_detail}>
-          <Pressable onPress={() => navigation.navigate('EditTask')}><Text style={styles.userName_title}>Edit</Text></Pressable>
-          <Pressable onPress={() => {}}><Text style={styles.userName_title}>Delete</Text></Pressable>
+          <CustomIcon onPress={() => navigation.navigate('EditTask')} iconName="pencil-sharp" size={40} color={colorsTheme.darkBlue}/>
+          <CustomIcon onPress={() => console.log('delete button pressed')} iconName="trash" size={40} color={colorsTheme.redTrash}/>
         </View>
       </View>
     </View>
