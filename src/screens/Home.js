@@ -2,18 +2,13 @@ import { Pressable, StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 import CustomIcon from '../components/CustomIcon'
 import { colorsTheme } from '../styles/colorsTheme'
+import CustomUserName from '../components/CustomUserName'
 
 
 const Home = ({navigation}) => {
   return (
     <View style={styles.container}>
-      <View style={styles.container_userName}>
-        <View>
-            <Text style={styles.userName_title}>Home Screen</Text>
-            <Text style={styles.userName_description}>Hello! what will we do today?</Text>
-        </View>
-        <Text style={styles.userName_logout}>Log out</Text>
-      </View>
+      <CustomUserName home={true} name={'Diana Campos'} image={require('../images/user-avatar.png')} />
       <View style={styles.container_categories}>
         <View style={styles.container_categories_text}>
             <Text style={styles.categories_title}>CATEGORIES</Text>
