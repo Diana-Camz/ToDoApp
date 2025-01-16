@@ -40,7 +40,7 @@ const Home = ({navigation}) => {
         </View>
       </View>
       <View style={styles.container_buttonAdd}>
-        <Pressable onPress={() => {}}>
+        <Pressable onPress={() => navigation.navigate('CreateTask')}>
             <Text style={styles.tasks_title}>BUTTON ADD COMPONENT</Text>
         </Pressable>
       </View>
