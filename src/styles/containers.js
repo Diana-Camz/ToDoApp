@@ -18,11 +18,11 @@ export const containers = StyleSheet.create({
     marginTop: 40,
   },
   userName: {
-    height: 75,
-    flexDirection: 'row',
-    justifyContent: "flex-end",
+    height: 55,
+    flexDirection: 'row-reverse',
+    justifyContent: "flex-start",
     alignItems: 'center',
-    margin: 15,
-    marginTop: 40,
+    margin: 10,
+    marginTop: 20,
   },
 });
