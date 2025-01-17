@@ -8,7 +8,7 @@ import CustomUserName from '../components/CustomUserName'
 const Home = ({navigation}) => {
   return (
     <View style={styles.container}>
-      <CustomUserName home={true} name={'Diana Campos'} image={require('../images/user-avatar.png')} />
+      <CustomUserName screen={'home'} name={'Diana Campos'} image={require('../images/user-avatar.png')} />
       <View style={styles.container_categories}>
         <View style={styles.container_categories_text}>
             <Text style={styles.categories_title}>CATEGORIES</Text>
