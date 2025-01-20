@@ -1,11 +1,22 @@
-import { Pressable, StyleSheet, Text, View } from 'react-native'
+import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 import CustomIcon from '../components/CustomIcon'
 import { colorsTheme } from '../styles/colorsTheme'
 import CustomUserName from '../components/CustomUserName'
 import { containers } from '../styles/containers'
+import { default as tasks } from '../data/exampleTask'
+import CustomDetailField from '../components/CustomDetailField'
+import { detail } from '../styles/components/detail'
 
 const DetailTask = ({navigation}) => {
+  const taskDetails = [
+    { field: 'status', value: tasks[0].status },
+    { field: 'date', value: tasks[0].date },
+    { field: 'time', value: tasks[0].time },
+    { field: 'category', value: tasks[0].category.join(' | ') },
+    { field: 'priority', value: tasks[0].priority },
+    { field: 'description', value: tasks[0].description }
+  ]
   return (
     <View style={containers.main}>
       <View>
@@ -17,22 +28,20 @@ const DetailTask = ({navigation}) => {
       <View style={styles.container_title}>
         <Text style={styles.title}>Take a look at your task!</Text>
       </View>
-      <View style={styles.container_task_detail}>
-        <View style={styles.container_header_task_detail}>
-          <Text>Emoji</Text>
-          <Text>Task Name</Text>
+      <View style={detail.container}>
+        <View style={detail.titleContainer}>
+          <Text style={detail.emoji}>{tasks[0].emoji}</Text>
+          <Text style={detail.title}>{tasks[0].title}</Text>
         </View>
-        <View style={styles.container_description_task_detail}>
-          <Text style={styles.name_title}> Status</Text>
-          <Text style={styles.name_title}> Date</Text>
-          <Text style={styles.name_title}> Time</Text>
-          <Text style={styles.name_title}> Category</Text>
-          <Text style={styles.name_title}> Priority</Text>
-          <Text style={styles.name_title}> Description</Text>
+        <View style={detail.valuesContainer}>
+          {taskDetails.map((item, index) => (
+            <CustomDetailField key={index} field={item.field} value={item.value}/>
+          ))}
+
         </View>
-        <View style={styles.container_buttons_task_detail}>
-          <CustomIcon onPress={() => navigation.navigate('EditTask')} iconName="pencil-sharp" size={40} color={colorsTheme.darkBlue}/>
-          <CustomIcon onPress={() => console.log('delete button pressed')} iconName="trash" size={40} color={colorsTheme.redTrash}/>
+        <View style={detail.buttonContainer}>
+          <CustomIcon onPress={() => navigation.navigate('EditTask')} iconName="pencil-sharp" size={35} color={colorsTheme.darkBlue}/>
+          <CustomIcon onPress={() => console.log('delete button pressed')} iconName="trash" size={35} color={colorsTheme.redTrash}/>
         </View>
       </View>
     </View>
@@ -52,34 +61,5 @@ const styles = StyleSheet.create({
   title:{
     color:'#ffffff',
     marginTop: 40,
-
   },
-  container_task_detail:{
-    height: 500,
-    marginTop: 40,
-    marginHorizontal: 30,
-    justifyContent: 'space-between',
-    backgroundColor: '#080b10',
-    paddingHorizontal: 20,
-    borderRadius: 15,
-    borderWidth: 1,
-    borderColor: '#ffffff',
-  },
-  container_header_task_detail: {
-    alignItems: 'center',
-  },
-  name_title:{
-    color: '#505257',
-    margin: 5,
-  },
-  container_buttons_task_detail: {
-    flexDirection: 'row',
-    justifyContent: 'space-around',
-    marginTop: 50,
-    marginBottom: 25,
-    padding: 20,
-    borderWidth: 1,
-    borderColor: '#ffffff',
-
-  }
 })

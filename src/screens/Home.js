@@ -10,9 +10,9 @@ import Category from '../components/Category'
 
 const Home = ({navigation}) => {
   return (
-    <View style={styles.container}>
+    <View style={containers.main}>
       <CustomUserName screen={'home'} name={'Diana Campos'} image={require('../images/user-avatar.png')} />
-      <View style={styles.container_categories}>
+      <View>
         <View style={styles.container_categories_text}>
             <Text style={styles.categories_title}>CATEGORIES</Text>
             <Text style={styles.categories_option}>See more</Text>
@@ -23,14 +23,14 @@ const Home = ({navigation}) => {
             keyExtractor={item => item.key}
             horizontal={true}
             renderItem={({item}) => 
-                <Category onPress={() => console.log(`Category button id ${item.key} pressed`)}  title={item.title} tasks={item.tasks} image={item.image}/>
+                <Category onPress={() => {}}  title={item.title} tasks={item.tasks} image={item.image}/>
             }
             />
         </View>
       </View>
       <View>
         <View style={styles.container_tasks_text}>
-            <View style={styles.container_tasks_title}>
+            <View>
                 <Text style={styles.tasks_title}>TODAY TASK</Text>
             </View>
             <View style={styles.container_tasks_options}>
@@ -56,26 +56,6 @@ const Home = ({navigation}) => {
 export default Home
 
 const styles = StyleSheet.create({
-    container: {
-        flex:1,
-        backgroundColor: '#141315',
-    },
-    container_userName: {
-        marginTop: 80,
-        paddingLeft: 30,
-        flexDirection: 'row',
-        justifyContent: 'space-between'
-    },
-    userName_title:{
-        color:'#ffffff',
-    },
-    userName_description:{
-        color:'#ffffff',
-    },
-    userName_logout: {
-        color:'#657FB1',
-        marginRight: 40,
-    },
     container_categories_text: {
         marginTop: 80,
         paddingLeft: 30,
