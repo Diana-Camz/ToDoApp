@@ -27,5 +27,6 @@ export const containers = StyleSheet.create({
   },
   category: {
     paddingLeft: 15,
-  }
+  },
+
 });

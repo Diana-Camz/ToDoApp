@@ -1,7 +1,7 @@
 import { StyleSheet } from "react-native";
 import { colorsTheme } from "./colorsTheme";
 
-export const fontsTheme = StyleSheet.create({
+export const fontsTheme = {
   title: {
     color: colorsTheme.white,
     fontFamily: "OpenSans_600SemiBold",
@@ -21,7 +21,7 @@ export const fontsTheme = StyleSheet.create({
     color: colorsTheme.darkBlueSecond,
     fontFamily: "Manrope_700Bold",
     textAlign: "left",
-    fontWeight: 700,
+    fontWeight: '700',
     fontSize: 16,
   },
   opacity50: {
@@ -30,4 +30,5 @@ export const fontsTheme = StyleSheet.create({
   opacity70: {
     opacity: 0.7,
   },
-});
+  normal: 15,
+};
