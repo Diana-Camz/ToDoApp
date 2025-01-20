@@ -2,25 +2,25 @@ import { Pressable, StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 import CustomIcon from '../components/CustomIcon'
 import { colorsTheme } from '../styles/colorsTheme'
+import CustomUserName from '../components/CustomUserName'
+import { containers } from '../styles/containers'
 
 const DetailTask = ({navigation}) => {
   return (
-    <View style={styles.container}>
-      <View style={styles.container_header}>
+    <View style={containers.main}>
+      <View>
         <View style={styles.container_icon}>
           <Text style={styles.icon_text}>icon</Text>
         </View>
-        <View style={styles.container_userName}>
-          <Text style={styles.userName_title}>User Name</Text>
-        </View>
+        <CustomUserName name={'Diana Campos'} image={require('../images/user-avatar.png')}/>
       </View>
       <View style={styles.container_title}>
         <Text style={styles.title}>Take a look at your task!</Text>
       </View>
       <View style={styles.container_task_detail}>
         <View style={styles.container_header_task_detail}>
-          <Text style={styles.userName_title}>Emoji</Text>
-          <Text style={styles.userName_title}>Task Name</Text>
+          <Text>Emoji</Text>
+          <Text>Task Name</Text>
         </View>
         <View style={styles.container_description_task_detail}>
           <Text style={styles.name_title}> Status</Text>
@@ -42,23 +42,7 @@ const DetailTask = ({navigation}) => {
 export default DetailTask
 
 const styles = StyleSheet.create({
-  container: {
-    flex:1,
-    backgroundColor: '#141315',
-  },
-  container_header: {
-    marginTop: 80,
-    paddingLeft: 30,
-    flexDirection: 'row',
-    justifyContent: 'space-around',
-  },
-  container_userName: {
-
-  },
   icon_text: {
-    color:'#ffffff',
-  },
-  userName_title:{
     color:'#ffffff',
   },
   container_title: {

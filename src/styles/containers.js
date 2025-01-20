@@ -9,4 +9,20 @@ export const containers = StyleSheet.create({
     flex: 1,
     backgroundColor: colorsTheme.dark,
   },
+  userName_home: {
+    height: 75,
+    flexDirection: 'row',
+    justifyContent: "flex-start",
+    alignItems: 'center',
+    margin: 15,
+    marginTop: 40,
+  },
+  userName: {
+    height: 55,
+    flexDirection: 'row-reverse',
+    justifyContent: "flex-start",
+    alignItems: 'center',
+    margin: 10,
+    marginTop: 20,
+  },
 });
