@@ -23,7 +23,7 @@ const Home = ({navigation}) => {
             keyExtractor={item => item.key}
             horizontal={true}
             renderItem={({item}) => 
-                <Category onPress={() => console.log(`Category button id ${item.key} pressed`)}  title={item.title} tasks={item.tasks} image={item.image}/>
+                <Category onPress={() => {}}  title={item.title} tasks={item.tasks} image={item.image}/>
             }
             />
         </View>
