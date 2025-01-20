@@ -1,5 +1,7 @@
 import { Pressable, StyleSheet, Text, View } from 'react-native'
 import React from 'react'
+import CustomIcon from '../components/CustomIcon'
+import { colorsTheme } from '../styles/colorsTheme'
 
 
 const Home = ({navigation}) => {
@@ -40,9 +42,7 @@ const Home = ({navigation}) => {
         </View>
       </View>
       <View style={styles.container_buttonAdd}>
-        <Pressable onPress={() => navigation.navigate('CreateTask')}>
-            <Text style={styles.tasks_title}>BUTTON ADD COMPONENT</Text>
-        </Pressable>
+        <CustomIcon onPress={() => navigation.navigate('CreateTask')} iconName="add-sharp" size={55} color={colorsTheme.dark} background={true}/>
       </View>
     </View>
   )
