@@ -1,5 +1,6 @@
 export const colorsTheme = {
     dark: "#141315", // Background
+    lightDark: '#151d25', //category background
     darkGray: "#3F434B", // Search box
     lightGray: "#282D38", // completed mark outline button
     lightGraySecond: "#6F6F6F", // description titles

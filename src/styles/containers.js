@@ -25,4 +25,7 @@ export const containers = StyleSheet.create({
     margin: 10,
     marginTop: 20,
   },
+  category: {
+    paddingLeft: 15,
+  }
 });

@@ -1,8 +1,11 @@
-import { Pressable, StyleSheet, Text, View } from 'react-native'
+import { Pressable, StyleSheet, Text, View, FlatList } from 'react-native'
 import React from 'react'
+import exampleCategory from '../data/exampleCategory'
 import CustomIcon from '../components/CustomIcon'
 import { colorsTheme } from '../styles/colorsTheme'
+import { containers } from '../styles/containers'
 import CustomUserName from '../components/CustomUserName'
+import Category from '../components/Category'
 
 
 const Home = ({navigation}) => {
@@ -14,8 +17,15 @@ const Home = ({navigation}) => {
             <Text style={styles.categories_title}>CATEGORIES</Text>
             <Text style={styles.categories_option}>See more</Text>
         </View>
-        <View>
-            <Text style={styles.categories_title}>CATEGORIES COMPONENT</Text>
+        <View style={containers.category}>
+            <FlatList
+            data={exampleCategory}
+            keyExtractor={item => item.key}
+            horizontal={true}
+            renderItem={({item}) => 
+                <Category onPress={() => {}}  title={item.title} tasks={item.tasks} image={item.image}/>
+            }
+            />
         </View>
       </View>
       <View>
