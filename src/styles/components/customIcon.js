@@ -7,7 +7,6 @@ export const customIcon = StyleSheet.create({
     width: 100,
     alignItems: "center",
     justifyContent: "center",
-    margin: 10,
   },
   background: {
     backgroundColor: colorsTheme.darkBlue,
