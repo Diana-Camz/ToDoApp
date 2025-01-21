@@ -1,11 +1,13 @@
 import { Pressable, StyleSheet, Text, View, FlatList } from 'react-native'
 import React from 'react'
-import exampleCategory from '../data/exampleCategory'
+import { default as category } from '../data/exampleCategory'
+import { default as tasks } from '../data/exampleTask'
 import CustomIcon from '../components/CustomIcon'
 import { colorsTheme } from '../styles/colorsTheme'
 import { containers } from '../styles/containers'
 import CustomUserName from '../components/CustomUserName'
 import Category from '../components/Category'
+import Task from '../components/Task'
 
 
 const Home = ({navigation}) => {
@@ -19,7 +21,7 @@ const Home = ({navigation}) => {
         </View>
         <View style={containers.category}>
             <FlatList
-            data={exampleCategory}
+            data={category}
             keyExtractor={item => item.key}
             horizontal={true}
             renderItem={({item}) => 
@@ -38,16 +40,18 @@ const Home = ({navigation}) => {
                 <Text style={styles.tasks_option}>See all</Text>
             </View>
         </View>
-        <View style={styles.container_tasks_component}>
-            <Text style={styles.tasks_title}>TASKS COMPONENT</Text>
-            <Pressable onPress={() => navigation.navigate('DetailTask')}><Text style={styles.tasks_title}>TASKS</Text></Pressable>
-            <Pressable><Text style={styles.tasks_title}>TASKS</Text></Pressable>
-            <Pressable><Text style={styles.tasks_title}>TASKS</Text></Pressable>
-            <Pressable><Text style={styles.tasks_title}>TASKS</Text></Pressable>
+        <View style={containers.task}>
+            <FlatList
+            data={tasks}
+            keyExtractor={item => item.id.toString()}
+            renderItem={({item}) => 
+                <Task title={item.title} emoji={item.emoji} time={item.time} status={item.status} priority={item.priority}/>
+            }
+            showsVerticalScrollIndicator={false}/>
         </View>
       </View>
-      <View style={styles.container_buttonAdd}>
-        <CustomIcon onPress={() => navigation.navigate('CreateTask')} iconName="add-sharp" size={55} color={colorsTheme.dark} background={true}/>
+      <View style={containers.addButon}>
+        <CustomIcon onPress={() => navigation.navigate('CreateTask')} iconName="add-sharp" size={50} color={colorsTheme.dark} background={true}/>
       </View>
     </View>
   )
@@ -57,7 +61,7 @@ export default Home
 
 const styles = StyleSheet.create({
     container_categories_text: {
-        marginTop: 80,
+        marginTop: 10,
         paddingLeft: 30,
         flexDirection: 'row',
         justifyContent: 'space-between'
@@ -70,7 +74,7 @@ const styles = StyleSheet.create({
         marginRight: 40,
     },
     container_tasks_text:{
-        marginTop: 80,
+        marginTop: 10,
         paddingLeft: 30,
         flexDirection: 'row',
         justifyContent: 'space-between',
@@ -83,18 +87,8 @@ const styles = StyleSheet.create({
         alignItems: 'flex-end',
         justifyContent: 'flex-end', 
     },
-    container_tasks_component:{
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        paddingTop: 20,
-    },
     tasks_option:{
         color:'#657FB1',
         marginRight: 40,
     },
-    container_buttonAdd:{
-        flex: 1,
-        justifyContent: 'flex-end',
-        alignItems: 'center',
-    }
-})
+});
