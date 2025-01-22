@@ -40,5 +40,16 @@ export const containers = StyleSheet.create({
     height: 400,
     borderRadius: 15,
     backgroundColor: colorsTheme.darkBlueThird,
+  },
+  homeSections: {
+    marginTop: 10,
+    paddingLeft: 30,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
+  homeSectionTask: {
+    flexDirection: 'row',
+    alignItems: 'flex-end',
+    justifyContent: 'flex-end', 
   }
 });

@@ -37,5 +37,8 @@ export const task = StyleSheet.create({
         fontSize: 12,
         color: colorsTheme.lightGraySecond,
     },
+    swipeableContainer: {
+        width: 100,
+    }
 
 });
