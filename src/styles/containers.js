@@ -28,5 +28,11 @@ export const containers = StyleSheet.create({
   category: {
     paddingLeft: 15,
   },
+  loader: {
+    width: 300,
+    height: 300,
+    marginTop: 210,
+    alignSelf: 'center',
+}
 
 });
