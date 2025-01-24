@@ -41,7 +41,7 @@ const DetailTask = ({navigation}) => {
         </View>
         <View style={detail.buttonContainer}>
           <CustomIcon onPress={() => navigation.navigate('EditTask')} iconName="pencil-sharp" size={35} color={colorsTheme.darkBlue}/>
-          <CustomIcon onPress={() => console.log('delete button pressed')} iconName="trash" size={35} color={colorsTheme.redTrash}/>
+          <CustomIcon onPress={() => {}} iconName="trash" size={35} color={colorsTheme.redTrash}/>
         </View>
       </View>
     </View>

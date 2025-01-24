@@ -4,7 +4,7 @@ import { colorsTheme } from "./colorsTheme";
 export const containers = StyleSheet.create({
   main: {
     paddingHorizontal: 16,
-    paddingTop: 60,
+    paddingTop: 40,
     paddingBottom: 20,
     flex: 1,
     backgroundColor: colorsTheme.dark,
@@ -28,5 +28,28 @@ export const containers = StyleSheet.create({
   category: {
     paddingLeft: 15,
   },
-
+  addButon: {
+    flex: 1,
+    justifyContent: 'flex-end',
+    alignItems: 'center',
+  },
+  task: {
+    marginTop: 8,
+    marginHorizontal: 12,
+    padding: 10,
+    height: 400,
+    borderRadius: 15,
+    backgroundColor: colorsTheme.darkBlueThird,
+  },
+  homeSections: {
+    marginTop: 10,
+    paddingLeft: 30,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
+  homeSectionTask: {
+    flexDirection: 'row',
+    alignItems: 'flex-end',
+    justifyContent: 'flex-end', 
+  }
 });
