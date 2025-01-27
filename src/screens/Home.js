@@ -8,6 +8,8 @@ import { containers } from '../styles/containers'
 import CustomUserName from '../components/CustomUserName'
 import Category from '../components/Category'
 import Task from '../components/Task'
+import CustomTitle from '../components/CustomTitle'
+
 
 
 const Home = ({navigation}) => {
@@ -16,7 +18,7 @@ const Home = ({navigation}) => {
       <CustomUserName screen={'home'} name={'Diana Campos'} image={require('../images/user-avatar.png')} />
       <View>
         <View style={containers.homeSections}>
-            <Text style={styles.categories_title}>CATEGORIES</Text>
+            <CustomTitle title={'CATEGORIES'} type='regular'/>
             <Text style={styles.categories_option}>See more</Text>
         </View>
         <View style={containers.category}>

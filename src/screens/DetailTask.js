@@ -7,6 +7,7 @@ import { containers } from '../styles/containers'
 import { default as tasks } from '../data/exampleTask'
 import CustomDetailField from '../components/CustomDetailField'
 import { detail } from '../styles/components/detail'
+import CustomTitle from '../components/CustomTitle'
 
 const DetailTask = ({navigation}) => {
   const taskDetails = [
@@ -19,19 +20,17 @@ const DetailTask = ({navigation}) => {
   ]
   return (
     <View style={containers.main}>
-      <View>
-        <View style={styles.container_icon}>
-          <Text style={styles.icon_text}>icon</Text>
-        </View>
+      <View style={containers.header}>
+        <CustomIcon onPress={() => navigation.goBack()} iconName="arrow-back" size={35} color={colorsTheme.darkBlue}/>
         <CustomUserName name={'Diana Campos'} image={require('../images/user-avatar.png')}/>
       </View>
-      <View style={styles.container_title}>
-        <Text style={styles.title}>Take a look at your task!</Text>
+      <View>
+        <CustomTitle title={`Take a look at your\ntask!`} type='msgScreen'/>
       </View>
       <View style={detail.container}>
         <View style={detail.titleContainer}>
           <Text style={detail.emoji}>{tasks[0].emoji}</Text>
-          <Text style={detail.title}>{tasks[0].title}</Text>
+          <CustomTitle title={tasks[0].title} type='xlarge'/>
         </View>
         <View style={detail.valuesContainer}>
           {taskDetails.map((item, index) => (
@@ -53,13 +52,5 @@ export default DetailTask
 const styles = StyleSheet.create({
   icon_text: {
     color:'#ffffff',
-  },
-  container_title: {
-    margin: 10,
-    marginTop: 40,
-  },
-  title:{
-    color:'#ffffff',
-    marginTop: 40,
   },
 })
