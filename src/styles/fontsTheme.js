@@ -2,21 +2,6 @@ import { StyleSheet } from "react-native";
 import { colorsTheme } from "./colorsTheme";
 
 export const fontsTheme = {
-  title: {
-    color: colorsTheme.white,
-    fontFamily: "OpenSans_600SemiBold",
-    textAlign: "left",
-  },
-  description: {
-    color: colorsTheme.lightGraySecond,
-    fontFamily: "OpenSans_600SemiBold",
-    textAlign: "left",
-  },
-  inputTitle: {
-    color: colorsTheme.darkBlueSecond,
-    fontFamily: "OpenSans_600SemiBold",
-    textAlign: "left",
-  },
   buttons: {
     color: colorsTheme.darkBlueSecond,
     fontFamily: "Manrope_700Bold",
@@ -30,5 +15,59 @@ export const fontsTheme = {
   opacity70: {
     opacity: 0.7,
   },
-  normal: 15,
+  xlarge: {
+    fontSize: 25,
+    color: colorsTheme.white,
+  },
+  large: {
+    fontSize: 18,
+    color: colorsTheme.white,
+  },
+  regular: {
+    fontSize: 14,
+    color: colorsTheme.white,
+  },
+  medium: {
+    fontSize: 13,
+    color: colorsTheme.white,
+  },
+  small: {
+    fontSize: 12,
+    color: colorsTheme.white,
+  },
+  detail: {
+    fontSize: 14,
+    color: colorsTheme.darkGray,
+  },
+  field: {
+    fontSize: 16,
+    color: colorsTheme.lightGraySecond,
+  },
+  blue: {
+    fontSize: 14,
+    color: colorsTheme.lightBlueSecond,
+  },
+  default: {
+    fontSize: 15,
+    color: colorsTheme.white
+  }, 
+  red: {
+    fontSize: 16,
+    color: colorsTheme.red,
+  },
+  yellow: {
+    fontSize: 15,
+    color: colorsTheme.yellow,
+  },
+  green: {
+    fontSize: 15,
+    color: colorsTheme.green,
+  },
+  msgScreen: {
+    fontSize: 28,
+    color: colorsTheme.lightGraySecond,
+    marginLeft: 26,
+    marginTop: 25,
+  },
+
 };
