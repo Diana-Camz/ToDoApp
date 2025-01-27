@@ -7,7 +7,7 @@ export const detail = StyleSheet.create({
       marginTop: 40,
       marginHorizontal: 10,
       justifyContent: 'space-between',
-      backgroundColor: '#080b10',
+      backgroundColor: colorsTheme.darkBlueThird,
       paddingHorizontal: 20,
       borderRadius: 15,
     }, 

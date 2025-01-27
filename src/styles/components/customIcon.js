@@ -4,7 +4,7 @@ import { colorsTheme } from "../colorsTheme";
 export const customIcon = StyleSheet.create({
   container: {
     height: 54,
-    width: 100,
+    width: 50,
     alignItems: "center",
     justifyContent: "center",
   },

@@ -1,11 +1,11 @@
 import 'react-native-gesture-handler'
 import { NavigationContainer } from '@react-navigation/native';
 import Navigation from './src/navigation/Navigation'
+import {GestureHandlerRootView} from 'react-native-gesture-handler'
 import * as SplashScreen from 'expo-splash-screen';
 import Loader from './src/components/Loader';
 import { useCallback, useEffect, useState } from 'react';
 import { View } from 'react-native';
-
 
 SplashScreen.preventAutoHideAsync()
 
@@ -36,9 +36,11 @@ const App= () => {
   }
 
   return (
-    <NavigationContainer onReady={onLayoutRootView}>  
-      <Navigation/>
-    </NavigationContainer>
+    <GestureHandlerRootView style={{ flex: 1 }}>
+      <NavigationContainer onReady={onLayoutRootView}>
+        <Navigation />
+      </NavigationContainer>
+    </GestureHandlerRootView>
   );
 }
 

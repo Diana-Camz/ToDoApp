@@ -9,9 +9,10 @@ export const colorsTheme = {
     lightBlueSecond: "#657FB1", //Inputs titles
     darkBlue: "#273D69", // Edit task icon
     darkBlueSecond: "#122342", //Background Inputs and title buttons
+    darkBlueThird: "##080B10", //Background descriptions in screens
     redTrash: "#FF3434", // Delete task
     red: "#F24337", // High priority
     yellow: "#FFD928", // Medium priority
-    green: "#9EE73F", // Low priority and task completed
+    green: "#9ee73f", // Low priority and task completed
     white: "#D9D9D9", // Titles
   };
