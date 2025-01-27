@@ -2,12 +2,13 @@ import { Text, View, Image, Pressable } from 'react-native'
 import React from 'react'
 import {customUserName} from '../styles/components/customUserName'
 import { containers } from '../styles/containers'
+import CustomTitle from './CustomTitle'
 
 const CustomUserName = ({name, image, screen}) => {
 
      const userNameStyles = screen === 'home' 
-        ? [containers.userName_home, {marginLeft: 10}, customUserName.title_home] 
-        : [containers.userName,{marginRight: 10}, customUserName.title]
+        ? [containers.userName_home, {marginLeft: 10}] 
+        : [containers.userName,{marginRight: 10}]
 
     return (
         <View style={userNameStyles}>
@@ -17,14 +18,16 @@ const CustomUserName = ({name, image, screen}) => {
                 : (<Image source={image} style={customUserName.image}/>)}
             </View>
             <View style={userNameStyles[1]}>
-                <Text style={userNameStyles[2]}>{name}</Text>
+                { screen === 'home'
+                ? <CustomTitle title={name} type='large'/>
+                : <CustomTitle title={name} type='regular'/>}
                 { screen === 'home'
                 ? ( <Text style={customUserName.welcome_description}>Hello! what will we do today?</Text> )
                 : null }
             </View>
             { screen === 'home' 
-                ? ( <Pressable onPress={() => console.log('logout button pressed')} style={customUserName.marginLeft_logout}>
-                        <Text style={customUserName.logout_text}>Log out</Text>
+                ? ( <Pressable onPress={() => {}} style={customUserName.mgL}>
+                        <CustomTitle title={'Log out'} type='blue'/>
                     </Pressable> )
                 : null }
         </View>
