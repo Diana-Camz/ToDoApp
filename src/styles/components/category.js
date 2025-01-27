@@ -27,10 +27,4 @@ export const category = StyleSheet.create({
     borderWidth: 3,
     borderColor: colorsTheme.darkBlue,
   },
-  title: {
-    color: colorsTheme.white
-  },
-  tasks: {
-    color: colorsTheme.darkGray
-  },
 });

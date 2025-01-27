@@ -19,21 +19,10 @@ export const customUserName = StyleSheet.create({
     borderWidth: 3,
     borderColor: colorsTheme.darkBlue,
   },
-  marginLeft_logout: {
-    marginLeft: 40,
-  },
-  title_home: {
-    color: colorsTheme.white,
-    fontSize: 16,
-  },
-  title: {
-    color: colorsTheme.white,
-    fontSize: 14,
+  mgL: {
+    marginLeft: 30,
   },
   welcome_description: {
     color: colorsTheme.lightGraySecond
-  },
-  logout_text:{
-    color: colorsTheme.lightBlueSecond,
   },
 });

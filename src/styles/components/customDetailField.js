@@ -24,24 +24,4 @@ export const customDetailField = StyleSheet.create({
         borderRadius: 11,
         borderColor: colorsTheme.lightGray,
     },
-    title: {
-        color: colorsTheme.lightGraySecond,
-        fontSize: 16,
-      },
-    value: {
-        fontSize: fontsTheme.normal,
-        color: colorsTheme.white
-    }, 
-    red: {
-        fontSize: fontsTheme.normal,
-        color: colorsTheme.red,
-    },
-    yellow: {
-        fontSize: fontsTheme.normal,
-        color: colorsTheme.yellow,
-    },
-    green: {
-        fontSize: fontsTheme.normal,
-        color: colorsTheme.green,
-    }
 });
