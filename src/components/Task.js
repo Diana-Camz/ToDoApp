@@ -6,6 +6,7 @@ import CustomIcon from './CustomIcon'
 import { colorsTheme } from '../styles/colorsTheme'
 import { task } from '../styles/components/task'
 import { useNavigation } from '@react-navigation/native'
+import CustomTitle from './CustomTitle'
 
 
 const RightAction = ({prog, drag}) => {
@@ -72,8 +73,8 @@ const Task = ({title, emoji, time, status, priority}) => {
                         <Text style={task.emoji}>{emoji}</Text>
                     </View>
                     <View style={task.textContainer}>
-                        <Text numberOfLines={1} ellipsizeMode='tail' style={task.title}>{title}</Text>
-                        <Text style={task.date}>{time}</Text>
+                        <CustomTitle title={title} type='medium'/>
+                        <CustomTitle title={time} type='detail'/>
                     </View>
                 </View>
                 <View style={task.ellipseContainer}>

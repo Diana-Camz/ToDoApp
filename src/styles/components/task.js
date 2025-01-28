@@ -29,16 +29,7 @@ export const task = StyleSheet.create({
     emoji: {
         fontSize: 25,
     },
-    title: {
-        fontSize: fontsTheme.normal,
-        color: colorsTheme.white,
-    },
-    date: {
-        fontSize: 12,
-        color: colorsTheme.lightGraySecond,
-    },
     swipeableContainer: {
         width: 100,
     }
-
 });

@@ -1,6 +1,8 @@
 import { Text, View } from 'react-native'
 import React from 'react'
+import CustomTitle from './CustomTitle';
 import { customDetailField } from '../styles/components/customDetailField'
+import { fontsTheme } from '../styles/fontsTheme';
 
 const CustomDetailField = ({field, value}) => {
   const capitalizeFirstLetter = (str) => {
@@ -9,30 +11,30 @@ const CustomDetailField = ({field, value}) => {
   const getDynamicStyle = () => {
     if(field === 'status') {
       return value
-      ? customDetailField.green
-      : customDetailField.red
+      ? fontsTheme.green
+      : fontsTheme.red
     }
 
     if(field === 'priority'){
       switch(value.toLowerCase()) {
         case 'high':
-          return customDetailField.red;
+          return fontsTheme.red;
         case 'medium':
-          return customDetailField.yellow;
+          return fontsTheme.yellow;
         case 'low':
-          return customDetailField.green;
+          return fontsTheme.green;
         default:
-          return customDetailField.value;
+          return fontsTheme.default;
       }
     }
-    return customDetailField.value;
+    return fontsTheme.default;
   }
   return (
     <View style={field === 'description' ? customDetailField.descriptionContainer : customDetailField.container}>
-      <Text style={customDetailField.title}>{capitalizeFirstLetter(field)}: </Text>
+      <CustomTitle title={`${capitalizeFirstLetter(field)}: `} type='field'/>
       {field === 'description'
       ? (<View style={customDetailField.textContainer}>
-          <Text style={customDetailField.value}>{value}</Text>
+          <CustomTitle title={value} type='medium'/>
         </View>)
       : <Text style={getDynamicStyle()}>{field === 'status' ? (value ? 'Completed' : 'Pending') : value}</Text>}
     </View>

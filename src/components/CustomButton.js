@@ -1,7 +1,7 @@
 import { Pressable, Text, View } from 'react-native'
 import React from 'react'
 import { customButton } from "../styles/components/customButton";
-import { fontsTheme } from "../styles/fontsTheme";
+import CustomTitle from './CustomTitle';
 
 const CustomButton = ({onPress, title}) => {
   return (
@@ -9,7 +9,7 @@ const CustomButton = ({onPress, title}) => {
       <Pressable 
         onPress={onPress}
         >
-        <Text style={fontsTheme.buttons}>{title}</Text>
+        <CustomTitle title={title} type='buttons'/>
       </Pressable>
     </View>
   )

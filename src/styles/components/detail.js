@@ -27,8 +27,4 @@ export const detail = StyleSheet.create({
     emoji: {
         fontSize: 50,
       },
-    title: {
-        color: colorsTheme.white,
-        fontSize: 20,
-      },
 });
