@@ -27,7 +27,7 @@ const CustomUserName = ({name, image, screen}) => {
             </View>
             { screen === 'home' 
                 ? ( <Pressable onPress={() => {}} style={customUserName.mgL}>
-                        <CustomTitle title={'Log out'} type='blue'/>
+                        <CustomTitle title={'Log out'} type='link'/>
                     </Pressable> )
                 : null }
         </View>
