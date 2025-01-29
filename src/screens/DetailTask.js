@@ -6,7 +6,7 @@ import CustomUserName from '../components/CustomUserName'
 import { containers } from '../styles/containers'
 import { default as tasks } from '../data/exampleTask'
 import CustomDetailField from '../components/CustomDetailField'
-import { detail } from '../styles/components/detail'
+import { detail } from '../styles/screens/detail'
 import CustomTitle from '../components/CustomTitle'
 
 const DetailTask = ({navigation}) => {
