@@ -69,5 +69,9 @@ export const fontsTheme = {
     marginLeft: 26,
     marginTop: 25,
   },
+  input: {
+    fontSize: 17,
+    color: colorsTheme.lightblue,
+  }
 
 };
