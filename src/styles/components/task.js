@@ -1,6 +1,5 @@
 import { StyleSheet } from "react-native";
 import { colorsTheme } from "../colorsTheme";
-import { fontsTheme } from "../fontsTheme";
 
 export const task = StyleSheet.create({
     basicContainer: {
@@ -13,7 +12,7 @@ export const task = StyleSheet.create({
         alignItems: 'center'
     }, 
     taskContainer: {
-        backgroundColor: '#101725',
+        backgroundColor: colorsTheme.darkBlueSecond,
         margin: 5,
         borderRadius: 20,
     },
@@ -29,7 +28,4 @@ export const task = StyleSheet.create({
     emoji: {
         fontSize: 25,
     },
-    swipeableContainer: {
-        width: 100,
-    }
 });
