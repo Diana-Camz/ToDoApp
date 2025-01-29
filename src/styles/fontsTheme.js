@@ -43,7 +43,7 @@ export const fontsTheme = {
     fontSize: 16,
     color: colorsTheme.lightGraySecond,
   },
-  blue: {
+  link: {
     fontSize: 14,
     color: colorsTheme.lightBlueSecond,
   },
