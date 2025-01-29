@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, FlatList } from 'react-native'
+import { View, FlatList, Pressable } from 'react-native'
 import React from 'react'
 import { default as category } from '../data/exampleCategory'
 import { default as tasks } from '../data/exampleTask'
@@ -19,7 +19,9 @@ const Home = ({navigation}) => {
       <View>
         <View style={containers.homeSections}>
             <CustomTitle title={'CATEGORIES'} type='regular'/>
-            <Text style={styles.categories_option}>See more</Text>
+            <Pressable onPress={() => {}}>
+                <CustomTitle title={'See more'} type='link'/>
+            </Pressable>
         </View>
         <View style={containers.category}>
             <FlatList
@@ -27,54 +29,49 @@ const Home = ({navigation}) => {
             keyExtractor={item => item.key}
             horizontal={true}
             renderItem={({item}) => 
-                <Category onPress={() => {}}  title={item.title} tasks={item.tasks} image={item.image}/>
+                <Category 
+                    onPress={() => {}}  
+                    title={item.title} 
+                    tasks={item.tasks} 
+                    image={item.image}/>
             }
+            showsHorizontalScrollIndicator={false}
             />
         </View>
       </View>
       <View>
         <View style={containers.homeSections}>
-            <View>
-                <Text style={styles.tasks_title}>TODAY TASK</Text>
-            </View>
+            <CustomTitle title={'TODAY TASKS'} type='regular'/>
             <View style={containers.homeSectionTask}>
-                <Text style={styles.tasks_option}>filters</Text>
-                <Text style={styles.tasks_option}>See all</Text>
+                <Pressable onPress={() => {}}>
+                    <CustomTitle title={'filters'} type='link'/>
+                </Pressable>
+                <Pressable onPress={() => {}}>
+                    <CustomTitle title={'See all'} type='link'/>
+                </Pressable>
             </View>
         </View>
         <View style={containers.task}>
             <FlatList
-            data={tasks}
-            keyExtractor={item => item.id.toString()}
-            renderItem={({item}) => 
-                <Task {...item}/>
+                data={tasks}
+                keyExtractor={item => item.id.toString()}
+                renderItem={({item}) => 
+                    <Task {...item}/>
             }
-            showsVerticalScrollIndicator={false}/>
+                showsVerticalScrollIndicator={false}/>
         </View>
       </View>
       <View style={containers.addButon}>
-        <CustomIcon onPress={() => navigation.navigate('CreateTask')} iconName="add-sharp" size={50} color={colorsTheme.dark} background={true}/>
+        <CustomIcon 
+            onPress={() => navigation.navigate('CreateTask')} 
+            iconName="add-sharp" 
+            size={50} 
+            color={colorsTheme.dark} 
+            background={true}/>
       </View>
     </View>
   )
 }
 
-export default Home
-
-const styles = StyleSheet.create({
-    categories_title: {
-        color:'#ffffff',
-    },
-    categories_option:{
-        color:'#657FB1',
-        marginRight: 40,
-    },
-    tasks_title: {
-        color:'#ffffff',
-    },
-    tasks_option:{
-        color:'#657FB1',
-        marginRight: 40,
-    },
-});
+export default Home;
 
