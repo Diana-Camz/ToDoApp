@@ -8,7 +8,8 @@ const exampleTask = [
         "time": "07:00 AM",
         "category": ["Exercise", "Healthy"],
         "priority": "high",
-        "emoji": "✨"
+        "emoji": "✨",
+        "userId": 1
     },
     {
         "id": "2",
@@ -19,7 +20,8 @@ const exampleTask = [
         "time": "04:00 PM",
         "category": ["Personal", "Errands"],
         "priority": "medium",
-        "emoji": "🛒"
+        "emoji": "🛒",
+        "userId": 5
     },
     {
         "id": "3",
@@ -30,7 +32,8 @@ const exampleTask = [
         "time": "10:00 AM",
         "category": ["Work", "Meetings"],
         "priority": "high",
-        "emoji": "📅"
+        "emoji": "📅",
+        "userId": 3
     },
     {
         "id": "4",
@@ -41,7 +44,8 @@ const exampleTask = [
         "time": "08:00 PM",
         "category": ["Personal", "Leisure"],
         "priority": "low",
-        "emoji": "📖"
+        "emoji": "📖",
+        "userId": 7
     },
     {
         "id": "5",
@@ -52,7 +56,8 @@ const exampleTask = [
         "time": "02:00 PM",
         "category": ["Health", "Appointments"],
         "priority": "high",
-        "emoji": "🏥"
+        "emoji": "🏥",
+        "userId": 4
     },
     {
         "id": "6",
@@ -63,7 +68,8 @@ const exampleTask = [
         "time": "06:00 AM",
         "category": ["Exercise", "Wellness"],
         "priority": "medium",
-        "emoji": "🧘"
+        "emoji": "🧘",
+        "userId": 2
     },
     {
         "id": "7",
@@ -74,7 +80,8 @@ const exampleTask = [
         "time": "09:00 AM",
         "category": ["Work", "Productivity"],
         "priority": "medium",
-        "emoji": "📝"
+        "emoji": "📝",
+        "userId": 6
     },
     {
         "id": "8",
@@ -85,7 +92,8 @@ const exampleTask = [
         "time": "03:00 PM",
         "category": ["Household", "Chores"],
         "priority": "low",
-        "emoji": "🧺"
+        "emoji": "🧺",
+        "userId": 8
     },
     {
         "id": "9",
@@ -96,7 +104,8 @@ const exampleTask = [
         "time": "07:30 PM",
         "category": ["Social", "Fun"],
         "priority": "low",
-        "emoji": "🍽️"
+        "emoji": "🍽️",
+        "userId": 9
     },
     {
         "id": "10",
@@ -107,8 +116,105 @@ const exampleTask = [
         "time": "05:00 PM",
         "category": ["Education", "Coding"],
         "priority": "high",
-        "emoji": "💻"
+        "emoji": "💻",
+        "userId": 10
+    },
+    {
+        "id": "11",
+        "title": "Gardening",
+        "description": "Water the plants and trim the bushes.",
+        "status": true,
+        "date": "2025-01-25",
+        "time": "06:30 AM",
+        "category": ["Outdoor", "Leisure"],
+        "priority": "medium",
+        "emoji": "🌿",
+        "userId": 3
+    },
+    {
+        "id": "12",
+        "title": "Workout Session",
+        "description": "Complete a full-body workout routine.",
+        "status": false,
+        "date": "2025-01-26",
+        "time": "07:00 AM",
+        "category": ["Exercise", "Health"],
+        "priority": "high",
+        "emoji": "💪",
+        "userId": 1
+    },
+    {
+        "id": "13",
+        "title": "Write Journal",
+        "description": "Write about today's experience and thoughts.",
+        "status": false,
+        "date": "2025-01-27",
+        "time": "09:00 PM",
+        "category": ["Personal", "Reflection"],
+        "priority": "low",
+        "emoji": "📖",
+        "userId": 7
+    },
+    {
+        "id": "14",
+        "title": "Movie Night",
+        "description": "Watch a new release movie with friends.",
+        "status": true,
+        "date": "2025-01-28",
+        "time": "08:00 PM",
+        "category": ["Entertainment", "Social"],
+        "priority": "low",
+        "emoji": "🎬",
+        "userId": 9
+    },
+    {
+        "id": "15",
+        "title": "House Cleaning",
+        "description": "Deep clean the living room and kitchen.",
+        "status": false,
+        "date": "2025-01-29",
+        "time": "10:00 AM",
+        "category": ["Household", "Chores"],
+        "priority": "medium",
+        "emoji": "🧹",
+        "userId": 6
+    },
+    {
+        "id": "16",
+        "title": "Practice Guitar",
+        "description": "Learn a new song on the guitar.",
+        "status": true,
+        "date": "2025-01-30",
+        "time": "05:00 PM",
+        "category": ["Music", "Hobby"],
+        "priority": "medium",
+        "emoji": "🎸",
+        "userId": 4
+    },
+    {
+        "id": "17",
+        "title": "Meditation",
+        "description": "Practice mindfulness meditation for 15 minutes.",
+        "status": false,
+        "date": "2025-01-31",
+        "time": "07:30 AM",
+        "category": ["Wellness", "Health"],
+        "priority": "high",
+        "emoji": "🧘",
+        "userId": 2
+    },
+    {
+        "id": "18",
+        "title": "Call Family",
+        "description": "Catch up with parents and siblings.",
+        "status": true,
+        "date": "2025-02-01",
+        "time": "06:00 PM",
+        "category": ["Social", "Family"],
+        "priority": "medium",
+        "emoji": "📞",
+        "userId": 5
     }
-  ];
-  
-  export default exampleTask;
+];
+
+export default exampleTask;
