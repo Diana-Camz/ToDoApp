@@ -8,11 +8,11 @@ export const colorsTheme = {
     lightblue: "#556B96", //custom buttons background
     lightBlueSecond: "#657FB1", //Inputs titles
     darkBlue: "#273D69", // Edit task icon
-    darkBlueSecond: "#122342", //Background Inputs and title buttons
-    darkBlueThird: "##080B10", //Background descriptions in screens
-    redTrash: "#FF3434", // Delete task
-    red: "#F24337", // High priority
-    yellow: "#FFD928", // Medium priority
-    green: "#9ee73f", // Low priority and task completed
+    darkBlueSecond: "#0f3f9940", //Background Inputs and title buttons
+    darkBlueThird: "#131924", //Background descriptions in screens
+    redTrash: "#FF3434e6", // Delete task
+    red: "#F24337e6", // High priority
+    yellow: "#FFD928e6", // Medium priority
+    green: "#9ee73fe6", // Low priority and task completed
     white: "#D9D9D9", // Titles
   };

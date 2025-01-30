@@ -33,7 +33,7 @@ export const containers = StyleSheet.create({
   },
   category: {
     paddingLeft: 15,
-    marginBlock: 5,
+    marginBottom: 5,
   },
   loader: {
     width: 300,
@@ -41,7 +41,6 @@ export const containers = StyleSheet.create({
     marginTop: 210,
     alignSelf: 'center',
 },
-
   addButon: {
     flex: 1,
     justifyContent: 'flex-end',
@@ -56,14 +55,16 @@ export const containers = StyleSheet.create({
     backgroundColor: colorsTheme.darkBlueThird,
   },
   homeSections: {
-    marginVertical: 5,
+    marginTop: 5,
     paddingLeft: 30,
     flexDirection: 'row',
     justifyContent: 'space-between',
   },
   homeSectionTask: {
+    width: 120,
+    marginRight: 30,
     flexDirection: 'row',
     alignItems: 'flex-end',
-    justifyContent: 'flex-end', 
+    justifyContent: 'space-between',
   }
 });

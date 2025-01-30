@@ -19,11 +19,13 @@ const RightAction = ({prog, drag}) => {
     const styleAnimation = useAnimatedStyle(() => {
         return {
             transform: [{translateX: animatedOffset.value}],
+            position: 'relative',
+            right: 0,
         };
     });
     return (
         <Reanimated.View style={styleAnimation}>
-            <View style={[task.basicContainer, task.swipeableContainer]}>
+            <View style={[task.basicContainer]}>
                 <CustomIcon 
                     onPress={() => navigation.navigate('EditTask')} 
                     iconName="pencil-sharp" size={35} 
@@ -40,7 +42,7 @@ const RightAction = ({prog, drag}) => {
     );
 }
 
-const Task = ({title, emoji, time, status, priority}) => {
+const Task = ({title, emoji, time, status, priority, id}) => {
     const navigation = useNavigation();
     const [completed, setCompleted] = useState(status);
     const priorityColor = () => {
@@ -52,10 +54,10 @@ const Task = ({title, emoji, time, status, priority}) => {
     };
   return (
         <ReanimatedSwipeable
+            key={id}
             friction={2}
             rightThreshold={40}
             renderRightActions={(progress, drag) => <RightAction prog={progress} drag={drag} />}
-            shouldCancelWhenOutside={false}
         >
             <Pressable 
                 onPress={() => navigation.navigate('DetailTask')}
