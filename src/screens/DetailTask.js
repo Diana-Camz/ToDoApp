@@ -8,8 +8,11 @@ import { default as tasks } from '../data/exampleTask'
 import CustomDetailField from '../components/CustomDetailField'
 import { detail } from '../styles/screens/detail'
 import CustomTitle from '../components/CustomTitle'
+import Loader from '../components/Loader'
+import { useUser } from '../hooks/useUser'
 
 const DetailTask = ({navigation}) => {
+  const {user, loadingUser} = useUser(3);
   const taskDetails = [
     { field: 'status', value: tasks[0].status },
     { field: 'date', value: tasks[0].date },
@@ -17,12 +20,19 @@ const DetailTask = ({navigation}) => {
     { field: 'category', value: tasks[0].category.join(' | ') },
     { field: 'priority', value: tasks[0].priority },
     { field: 'description', value: tasks[0].description }
-  ]
+  ];
+
+  if(loadingUser) {
+    return (
+    <Loader/>
+    )
+  }
+
   return (
     <View style={containers.main}>
       <View style={containers.header}>
         <CustomIcon onPress={() => navigation.goBack()} iconName="arrow-back" size={35} color={colorsTheme.darkBlue}/>
-        <CustomUserName name={'Diana Campos'} image={require('../images/user-avatar.png')}/>
+        <CustomUserName {...user}/>
       </View>
       <View>
         <CustomTitle title={`Take a look at your\ntask!`} type='msgScreen'/>

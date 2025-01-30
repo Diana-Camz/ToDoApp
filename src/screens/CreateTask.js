@@ -7,13 +7,23 @@ import CustomTitle from '../components/CustomTitle'
 import CustomIcon from '../components/CustomIcon'
 import CustomUserName from '../components/CustomUserName'
 import { create } from '../styles/screens/create'
+import Loader from '../components/Loader'
+import { useUser } from '../hooks/useUser'
 
 const CreateTask = ({navigation}) => {
+  const {user, loadingUser} = useUser(3);
+
+  if(loadingUser) {
+    return (
+    <Loader/>
+    )
+  };
+
   return (
     <View style={containers.main}>
       <View style={containers.header}>
         <CustomIcon onPress={() => navigation.goBack()} iconName="arrow-back" size={35} color={colorsTheme.darkBlue}/>
-        <CustomUserName name={'Diana Campos'} image={require('../images/user-avatar.png')}/>
+        <CustomUserName {...user}/>
       </View>
       <View>
         <CustomTitle title={`Let's do something \nelse!!`} type='msgScreen'/>

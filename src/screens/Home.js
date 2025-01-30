@@ -9,13 +9,23 @@ import CustomUserName from '../components/CustomUserName'
 import Category from '../components/Category'
 import Task from '../components/Task'
 import CustomTitle from '../components/CustomTitle'
+import { useUser } from '../hooks/useUser'
+import Loader from '../components/Loader'
 
 
 
 const Home = ({navigation}) => {
+  const {user, loadingUser} = useUser(3);
+
+  if(loadingUser) {
+    return (
+    <Loader/>
+    )
+  }
+
   return (
     <View style={containers.main}>
-      <CustomUserName screen={'home'} name={'Diana Campos'} image={require('../images/user-avatar.png')} />
+      <CustomUserName screen={'home'} {...user} />
       <View>
         <View style={containers.homeSections}>
             <CustomTitle title={'CATEGORIES'} type='regular'/>
