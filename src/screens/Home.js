@@ -1,7 +1,6 @@
 import { View, FlatList, Pressable } from 'react-native'
 import React from 'react'
 import { default as category } from '../data/exampleCategory'
-import { default as tasks } from '../data/exampleTask'
 import CustomIcon from '../components/CustomIcon'
 import { colorsTheme } from '../styles/colorsTheme'
 import { containers } from '../styles/containers'
@@ -11,13 +10,15 @@ import Task from '../components/Task'
 import CustomTitle from '../components/CustomTitle'
 import { useUser } from '../hooks/useUser'
 import Loader from '../components/Loader'
+import { useTasks } from '../hooks/useTasks'
 
 
 
 const Home = ({navigation}) => {
   const {user, loadingUser} = useUser(3);
+  const {tasks, loadingTasks} = useTasks(9)
 
-  if(loadingUser) {
+  if(loadingUser || loadingTasks) {
     return (
     <Loader/>
     )
