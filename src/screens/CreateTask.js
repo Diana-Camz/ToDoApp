@@ -21,45 +21,33 @@ const CreateTask = ({navigation}) => {
       <View style={create.container}>
         <TaskInput 
           title={'Name'}
-          placeholder={'Read for 20 minutes'} 
-          type='input' 
+          placeholder={'Read for 20 minutes'}  
           iconName='pencil-sharp'
-          color={colorsTheme.lightblue} 
-          size={20}/>
+          />
         <TaskInput 
           title={'Date'} 
-          placeholder={'17 july, 2020'}
-          type='input' 
+          placeholder={'17 july, 2020'} 
           iconName='calendar-sharp'
-          color={colorsTheme.lightblue} 
-          size={20}/>
+          />
         <TaskInput 
           title={'Time'}
-          placeholder={'8:30 am'} 
-          type='input' 
+          placeholder={'8:30 am'}  
           iconName='time'
-          color={colorsTheme.lightblue} 
-          size={20}/>
+          />
         <TaskInput 
           title={'Category'} 
-          placeholder={'Personal'}
-          type='input' 
+          placeholder={'Personal'} 
           iconName='folder-open'
-          color={colorsTheme.lightblue} 
-          size={20}/>
+          />
         <TaskInput 
-          title={'Priority'} 
-          type='input' 
+          title={'Priority'}  
           iconName='podium'
-          color={colorsTheme.lightblue} 
-          size={20}/>
+          />
         <TaskInput 
           title={'Description'} 
-          placeholder={'Read more was a new year purpouse'}
-          type='input' 
+          placeholder={'Read more was a new year purpouse'} 
           iconName='clipboard'
-          color={colorsTheme.lightblue} 
-          size={20}/>
+          />
       </View>
     </View>
   )

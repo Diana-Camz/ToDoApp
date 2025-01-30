@@ -6,12 +6,12 @@ import { taskInput } from '../styles/components/taskInput';
 import { colorsTheme } from '../styles/colorsTheme';
 import { fontsTheme } from '../styles/fontsTheme';
 
-const TaskInput = ({iconName, color, size, title, type, placeholder}) => {
+const TaskInput = ({iconName, title, placeholder}) => {
   return (
     <View style={taskInput.container}>
       <View style={taskInput.titleContainer}>
-        <CustomIcon iconName={iconName} color={color} size={size}/>
-        <CustomTitle title={title} type={type}/>
+        <CustomIcon iconName={iconName} color={colorsTheme.lightblue} size={20}/>
+        <CustomTitle title={title} type='input'/>
       </View>
       <TextInput
         onChangeText={(val) => console.log(val)}
