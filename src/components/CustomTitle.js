@@ -4,7 +4,7 @@ import { fontsTheme } from '../styles/fontsTheme'
 
 
 const CustomTitle = ({title, type}) => {
-  const containsNewLine = title.includes('\n')
+  const containsNewLine = title.includes('\n') || "Description";
   return (
         <View>
             <Text 

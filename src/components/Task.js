@@ -60,7 +60,7 @@ const Task = ({title, emoji, time, status, priority, id}) => {
             renderRightActions={(progress, drag) => <RightAction prog={progress} drag={drag} />}
         >
             <Pressable 
-                onPress={() => navigation.navigate('DetailTask')}
+                onPress={() => navigation.navigate('DetailTask', {id: id})}
                 style={[task.basicContainer, task.taskContainer]}
             >
                 <View style={task.ellipseContainer}>

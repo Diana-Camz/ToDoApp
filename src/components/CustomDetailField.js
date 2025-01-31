@@ -33,10 +33,11 @@ const CustomDetailField = ({field, value}) => {
     <View style={field === 'description' ? customDetailField.descriptionContainer : customDetailField.container}>
       <CustomTitle title={`${capitalizeFirstLetter(field)}: `} type='field'/>
       {field === 'description'
-      ? (<View style={customDetailField.textContainer}>
-          <CustomTitle title={value} type='medium'/>
-        </View>)
-      : <Text style={getDynamicStyle()}>{field === 'status' ? (value ? 'Completed' : 'Pending') : value}</Text>}
+        ? (<View style={customDetailField.textContainer}>
+            <CustomTitle title={value} type='medium'/>
+          </View>)
+        : <Text style={getDynamicStyle()}>{field === 'status' ? (value ? 'Completed' : 'Pending') : value}</Text>
+      }
     </View>
   )
 }
