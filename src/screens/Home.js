@@ -1,6 +1,5 @@
 import { View, FlatList, Pressable } from 'react-native'
-import React from 'react'
-import { default as category } from '../data/exampleCategory'
+import React, { useEffect } from 'react'
 import CustomIcon from '../components/CustomIcon'
 import { colorsTheme } from '../styles/colorsTheme'
 import { containers } from '../styles/containers'
@@ -11,14 +10,16 @@ import CustomTitle from '../components/CustomTitle'
 import { useUser } from '../hooks/useUser'
 import Loader from '../components/Loader'
 import { useTasks } from '../hooks/useTasks'
+import { useCategory } from '../hooks/useCategory'
 
 
 
 const Home = ({navigation}) => {
-  const {user, loadingUser} = useUser(3);
-  const {tasks, loadingTasks} = useTasks(9)
+  const {user, loadingUser} = useUser(5);
+  const {tasks, loadingTasks} = useTasks(5);
+  const {categories, loadingCategories} = useCategory([])
 
-  if(loadingUser || loadingTasks) {
+  if(loadingUser || loadingTasks || loadingCategories) {
     return (
     <Loader/>
     )
@@ -36,15 +37,15 @@ const Home = ({navigation}) => {
         </View>
         <View style={containers.category}>
             <FlatList
-            data={category}
-            keyExtractor={item => item.key}
+            data={categories}
+            keyExtractor={item => item.categories}
             horizontal={true}
             renderItem={({item}) => 
                 <Category 
                     onPress={() => {}}  
-                    title={item.title} 
-                    tasks={item.tasks} 
-                    image={item.image}/>
+                    title={item.category} 
+                    tasks={item.count} 
+                    />
             }
             showsHorizontalScrollIndicator={false}
             />
