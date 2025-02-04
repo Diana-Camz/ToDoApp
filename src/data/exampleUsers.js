@@ -9,7 +9,7 @@ const users = [
   { id: "7", name: "Fernanda", lastname: "Ramírez", image: require("../images/avatar7.webp") },
   { id: "8", name: "José", lastname: "Torres", image: require("../images/avatar8.webp") },
   { id: "9", name: "Ana", lastname: "Vargas", image: require("../images/avatar9.webp") },
-  { id: "10", name: "Diana", lastname: "Sánchez", image: require("../images/avatar10.png") },
+  { id: "10", name: "Diana", lastname: "Sánchez", image: require("../images/avatar7.webp") },
   { id: "11", name: "Sofía", lastname: "Mendoza", image: require("../images/avatar1.webp") }
 ];
 
