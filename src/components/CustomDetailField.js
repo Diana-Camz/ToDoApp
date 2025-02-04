@@ -34,7 +34,7 @@ const CustomDetailField = ({field, value}) => {
       <CustomTitle title={`${capitalizeFirstLetter(field)}: `} type='field'/>
       {field === 'description'
         ? (<View style={customDetailField.textContainer}>
-            <CustomTitle title={value} type='medium'/>
+            <CustomTitle title={value} type='medium' numberOfLines={0}/>
           </View>)
         : <Text style={getDynamicStyle()}>{field === 'status' ? (value ? 'Completed' : 'Pending') : value}</Text>
       }

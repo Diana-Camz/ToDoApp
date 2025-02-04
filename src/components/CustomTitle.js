@@ -3,13 +3,12 @@ import React from 'react'
 import { fontsTheme } from '../styles/fontsTheme'
 
 
-const CustomTitle = ({title, type}) => {
-  const containsNewLine = title.includes('\n') || "Description";
+const CustomTitle = ({title, type, numberOfLines = 1}) => {
   return (
         <View>
             <Text 
             style={[fontsTheme[type]]}
-            numberOfLines={containsNewLine ? 0 : 1} 
+            numberOfLines={numberOfLines} 
             ellipsizeMode="tail">{title}</Text>
         </View>
   )

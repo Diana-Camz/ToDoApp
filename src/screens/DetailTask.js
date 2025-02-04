@@ -30,12 +30,12 @@ const DetailTask = ({navigation, route}) => {
         <CustomUserName {...user}/>
       </View>
       <View>
-        <CustomTitle title={`Take a look at your\ntask!`} type='msgScreen'/>
+        <CustomTitle title={`Take a look at your\ntask!`} type='msgScreen' numberOfLines={0}/>
       </View>
       <View style={detail.container}>
         <View style={detail.titleContainer}>
           <Text style={detail.emoji}>{task.emoji}</Text>
-          <CustomTitle title={task.title} type='xlarge'/>
+          <CustomTitle title={task.title} type='xlarge' numberOfLines={0}/>
         </View>
         <View style={detail.valuesContainer}>
           <FlatList
