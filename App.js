@@ -5,7 +5,6 @@ import {GestureHandlerRootView} from 'react-native-gesture-handler'
 import * as SplashScreen from 'expo-splash-screen';
 import Loader from './src/components/Loader';
 import { useCallback, useEffect, useState } from 'react';
-import { View } from 'react-native';
 
 SplashScreen.preventAutoHideAsync()
 
@@ -14,7 +13,7 @@ const App= () => {
   useEffect(() => {
         const prepareApp = async () => {
           try {
-            await new Promise(resolve => setTimeout(resolve, 7000))
+            await new Promise(resolve => setTimeout(resolve, 2000))
           } catch(err) {
             console.warn('Error during splash screen loading:', err);
           } finally {
