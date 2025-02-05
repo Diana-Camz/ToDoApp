@@ -1,5 +1,5 @@
 import { View, FlatList, Pressable } from 'react-native'
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import CustomIcon from '../components/CustomIcon'
 import { colorsTheme } from '../styles/colorsTheme'
 import { containers } from '../styles/containers'
@@ -18,6 +18,8 @@ const Home = ({navigation}) => {
   const {user, loadingUser} = useUser(5);
   const {tasks, loadingTasks} = useTasks(5);
   const {categories, loadingCategories} = useCategory([])
+  const [showAll, setShowAll] = useState(false);
+  const visibleCategories = showAll ? categories : categories.slice(0,4)
 
   if(loadingUser || loadingTasks || loadingCategories) {
     return (
@@ -31,15 +33,16 @@ const Home = ({navigation}) => {
       <View>
         <View style={containers.homeSections}>
             <CustomTitle title={'CATEGORIES'} type='regular'/>
-            <Pressable onPress={() => {}}>
+            <Pressable onPress={() => {navigation.navigate('Categories')}}>
                 <CustomTitle title={'See more'} type='link'/>
             </Pressable>
         </View>
         <View style={containers.category}>
             <FlatList
-            data={categories}
-            keyExtractor={item => item.categories}
+            data={visibleCategories}
+            keyExtractor={item => item.category}
             horizontal={true}
+            initialNumToRender={4}
             renderItem={({item}) => 
                 <Category 
                     onPress={() => {}}  
