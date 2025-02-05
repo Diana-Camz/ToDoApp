@@ -44,10 +44,10 @@ const Home = ({navigation}) => {
             horizontal={true}
             initialNumToRender={4}
             renderItem={({item}) => 
-                <Category 
-                    onPress={() => {}}  
+                <Category   
                     title={item.category} 
-                    tasks={item.count} 
+                    tasks={item.count}
+                    navigation={navigation} 
                     />
             }
             showsHorizontalScrollIndicator={false}
@@ -61,7 +61,7 @@ const Home = ({navigation}) => {
                 <Pressable onPress={() => {}}>
                     <CustomTitle title={'filters'} type='link'/>
                 </Pressable>
-                <Pressable onPress={() => {}}>
+                <Pressable onPress={() => {navigation.navigate('TaskList', {showAll: true})}}>
                     <CustomTitle title={'See all'} type='link'/>
                 </Pressable>
             </View>

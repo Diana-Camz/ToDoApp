@@ -36,9 +36,9 @@ const Categories = ({navigation}) => {
                 numColumns={2}
                 renderItem={({item}) => 
                 <Category
-                    onPress={() => {}}
                     title={item.category}
                     tasks={item.count}
+                    navigation={navigation}
                 />}
                 showsVerticalScrollIndicator={false}
             />
