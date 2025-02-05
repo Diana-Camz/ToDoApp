@@ -64,7 +64,7 @@ export const fontsTheme = {
     color: colorsTheme.green,
   },
   msgScreen: {
-    fontSize: 28,
+    fontSize: 30,
     color: colorsTheme.lightGraySecond,
     marginLeft: 26,
     marginTop: 25,

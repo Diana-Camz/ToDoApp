@@ -26,7 +26,7 @@ const CreateTask = ({navigation}) => {
         <CustomUserName {...user}/>
       </View>
       <View>
-        <CustomTitle title={`Let's do something \nelse!!`} type='msgScreen'/>
+        <CustomTitle title={`Let's do something else!!`} type='msgScreen' numberOfLines={0}/>
       </View>
       <View style={create.container}>
         <TaskInput 
