@@ -3,7 +3,7 @@ import { colorsTheme } from "./colorsTheme";
 
 export const fontsTheme = {
   buttons: {
-    color: colorsTheme.darkBlueSecond,
+    color: colorsTheme.blue,
     fontFamily: "Manrope_700Bold",
     textAlign: "left",
     fontWeight: '700',

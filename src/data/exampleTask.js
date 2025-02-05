@@ -17,7 +17,7 @@ const exampleTask = [
         "status": false,
         "date": "2025-01-16",
         "time": "04:00 PM",
-        "category": ["Personal", "Errands", "Wellness", "Health", "Business", "Exercise", "Work"],
+        "category": ["Personal", "Errands", "Wellness"],
         "priority": "medium",
         "description": "Buy fruits, vegetables, and dairy products.",
         "emoji": "🛒",
@@ -29,7 +29,7 @@ const exampleTask = [
         "status": true,
         "date": "2025-01-17",
         "time": "10:00 AM",
-        "category": ["Work", "Meetings", "Personal", "Errands", "Health",],
+        "category": ["Work", "Meetings", "Personal"],
         "priority": "high",
         "description": "Discuss project milestones with the team.",
         "emoji": "📅",
@@ -41,7 +41,7 @@ const exampleTask = [
         "status": false,
         "date": "2025-01-18",
         "time": "08:00 PM",
-        "category": ["Personal", "Leisure", "Errands"],
+        "category": ["Personal", "Leisure"],
         "priority": "low",
         "description": "Finish reading the novel 'The Alchemist'.",
         "emoji": "📖",
@@ -177,7 +177,7 @@ const exampleTask = [
         "priority": "medium",
         "description": "Deep clean the living room and kitchen.",
         "emoji": "🧹",
-        "userId": 6
+        "userId": 5
     },
     {
         "id": "16",
@@ -189,7 +189,7 @@ const exampleTask = [
         "priority": "medium",
         "description": "Learn a new song on the guitar.",
         "emoji": "🎸",
-        "userId": 4
+        "userId": 5
     },
     {
         "id": "17",
@@ -201,7 +201,7 @@ const exampleTask = [
         "priority": "high",
         "description": "Practice mindfulness meditation for 15 minutes.",
         "emoji": "🧘",
-        "userId": 2
+        "userId": 5
     },
     {
         "id": "18",
@@ -209,7 +209,7 @@ const exampleTask = [
         "status": true,
         "date": "2025-02-01",
         "time": "06:00 PM",
-        "category": ["Social", "Family", "Wellness", "Health"],
+        "category": ["Social", "Family"],
         "priority": "medium",
         "description": "Catch up with parents and siblings and this is another log text as example.",
         "emoji": "📞",
