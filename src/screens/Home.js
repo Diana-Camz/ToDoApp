@@ -1,5 +1,5 @@
 import { View, FlatList, Pressable } from 'react-native'
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import CustomIcon from '../components/CustomIcon'
 import { colorsTheme } from '../styles/colorsTheme'
 import { containers } from '../styles/containers'
@@ -19,6 +19,8 @@ const Home = ({navigation}) => {
   const {tasks, loadingTasks} = useTasks(5);
   const {categories, loadingCategories} = useCategory([])
   const [showAll, setShowAll] = useState(false);
+  const [openTaskId, setOpenTaskId] = useState(null);
+  const swipeableRef = useRef(null);
   const visibleCategories = showAll ? categories : categories.slice(0,4)
 
   if(loadingUser || loadingTasks || loadingCategories) {
@@ -71,7 +73,10 @@ const Home = ({navigation}) => {
                 data={tasks}
                 keyExtractor={item => item.id.toString()}
                 renderItem={({item}) => 
-                    <Task {...item}/>
+                    <Task {...item} 
+                      openTaskId={openTaskId} 
+                      setOpenTaskId={setOpenTaskId} 
+                      swipeableRef={swipeableRef}/>
             }
                 showsVerticalScrollIndicator={false}/>
         </View>
