@@ -1,5 +1,5 @@
 import { View } from 'react-native'
-import React from 'react'
+import React, { useRef, useState } from 'react'
 import { containers } from '../styles/containers'
 import CustomIcon from '../components/CustomIcon'
 import { colorsTheme } from '../styles/colorsTheme'
@@ -14,7 +14,8 @@ import { taskList } from '../styles/screens/taskList'
 const TaskList = ({navigation, route}) => {
     const {category, showAll} = route.params || {};
     const {tasks, loadingTasks} = useTasks(5);
-    
+    const [openTaskId, setOpenTaskId] = useState(null);
+    const swipeableRef = useRef(null);
 
 
     const filteredTasks = showAll
@@ -46,7 +47,10 @@ const TaskList = ({navigation, route}) => {
                 data={filteredTasks}
                 keyExtractor={item => item.id.toString()}
                 renderItem={({item}) => 
-                    <Task {...item}/>}
+                    <Task {...item} 
+                      openTaskId={openTaskId} 
+                      setOpenTaskId={setOpenTaskId} 
+                      swipeableRef={swipeableRef}/>}
                 showsVerticalScrollIndicator={false}
             />
         </View>
