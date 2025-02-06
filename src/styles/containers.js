@@ -68,5 +68,16 @@ export const containers = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'flex-end',
     justifyContent: 'space-between',
-  }
+  },
+  createOrEdit: {
+    flex: 1,
+    height: "auto",
+    marginTop: 40,
+    marginHorizontal: 10,
+    justifyContent: 'space-between',
+    paddingTop: 20,
+    backgroundColor: colorsTheme.darkBlueThird,
+    paddingHorizontal: 20,
+    borderRadius: 15,
+  }, 
 });

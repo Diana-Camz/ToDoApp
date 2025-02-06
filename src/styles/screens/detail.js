@@ -3,7 +3,7 @@ import { colorsTheme } from "../colorsTheme";
 
 export const detail = StyleSheet.create({
     container: {
-      height: 500,
+      height: 'auto',
       marginTop: 40,
       marginHorizontal: 10,
       justifyContent: 'space-between',
@@ -21,7 +21,6 @@ export const detail = StyleSheet.create({
     buttonContainer: {
       flexDirection: 'row',
       justifyContent: 'space-around',
-      marginBottom: 25,
       padding: 10,
     },
     emoji: {

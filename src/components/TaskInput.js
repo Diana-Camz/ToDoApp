@@ -6,19 +6,26 @@ import { taskInput } from '../styles/components/taskInput';
 import { colorsTheme } from '../styles/colorsTheme';
 import { fontsTheme } from '../styles/fontsTheme';
 
-const TaskInput = ({iconName, title, placeholder}) => {
+const TaskInput = ({iconName, title, placeholder, value, multiline = false, maxLength, isFocused, onFocus, onBlur}) => {
+  const descrContainer = title === 'Description'
+      ? taskInput.descriptionContainer
+      : taskInput.container
   return (
-    <View style={taskInput.container}>
+    <View style={[descrContainer, isFocused ? taskInput.focusedInput : {}]}>
       <View style={taskInput.titleContainer}>
-        <CustomIcon iconName={iconName} color={colorsTheme.lightblue} size={20}/>
-        <CustomTitle title={title} type='input'/>
+        <CustomIcon iconName={iconName} color={isFocused ? colorsTheme.lightBlueSecond : colorsTheme.darkBlue} size={20}/>
+        <CustomTitle title={title} type={isFocused ? 'inputFocused':'input'}/>
       </View>
       <TextInput
         onChangeText={(val) => console.log(val)}
+        value={value}
         placeholder={placeholder}
         placeholderTextColor={colorsTheme.darkBlue}
-        maxLength={20}
+        maxLength={maxLength}
         style={[taskInput.input, fontsTheme.regular]}
+        multiline={multiline}
+        onFocus={onFocus}
+        onBlur={onBlur}
       />
     </View>
   )
