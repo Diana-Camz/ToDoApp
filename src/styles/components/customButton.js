@@ -3,7 +3,7 @@ import { colorsTheme } from "../colorsTheme";
 
 export const customButton = StyleSheet.create({
   container: {
-    backgroundColor: colorsTheme.lightblue,
+    backgroundColor: colorsTheme.dark,
     height: 54,
     width: 328,
     alignItems: "center",
@@ -11,5 +11,7 @@ export const customButton = StyleSheet.create({
     borderRadius: 15,
     elevation: 5,
     margin: 10,
+    borderWidth: 2,
+    borderColor: colorsTheme.blue,
   },
 });

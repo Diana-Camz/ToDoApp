@@ -4,7 +4,7 @@ import { useTasks } from "./useTasks";
 
 export const useCategory = () => {
     const [loadingCategories, setLoadingCategories] = useState(true);
-    const [categories, setCategories] = useState(null);
+    const [categories, setCategories] = useState([]);
     const {tasks, loadingTasks} = useTasks(5);
 
     const getCategories = () => {
