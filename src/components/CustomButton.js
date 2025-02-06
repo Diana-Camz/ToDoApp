@@ -3,9 +3,9 @@ import React from 'react'
 import { customButton } from "../styles/components/customButton";
 import CustomTitle from './CustomTitle';
 
-const CustomButton = ({onPress, title}) => {
+const CustomButton = ({onPress, title, container}) => {
   return (
-    <View style={customButton.container}>
+    <View style={container}>
       <Pressable 
         onPress={onPress}
         >

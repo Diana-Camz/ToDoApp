@@ -10,6 +10,7 @@ import Loader from '../components/Loader'
 import { useTasks } from '../hooks/useTasks'
 import Task from '../components/Task'
 import { taskList } from '../styles/screens/taskList'
+import { customButton } from '../styles/components/customButton'
 
 const TaskList = ({navigation, route}) => {
     const {category, showAll} = route.params || {};
@@ -57,7 +58,9 @@ const TaskList = ({navigation, route}) => {
         {category
         && 
         <View style={taskList.buttonContainer}>
-            <CustomButton title={'Delete Category'}/>
+            <CustomButton 
+            title={'Delete Category'}
+            container={customButton.darkContainer} />
         </View>}
       </View>
     </View>
