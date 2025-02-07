@@ -36,6 +36,21 @@ export const taskInput = StyleSheet.create({
     },
     focusedInput: {
         borderColor: colorsTheme.lightBlueSecond,
-      }
+    },
+    swithContainer: {
+        width: '98%',
+        marginLeft: 3,
+    },
+    textContainerStyle: {
+        justifyContent: 'flex-start',
+        paddingVertical: 0,
+        paddingRight: 10,
+    },
+    textStyle: {
+        marginLeft: -10,
+    },
+    selectedTextStyle: {
+        marginLeft: -10,
+    },
 
 });

@@ -14,5 +14,8 @@ export const colorsTheme = {
     red: "#F24337e6", // High priority
     yellow: "#FFD928e6", // Medium priority
     green: "#9ee73fe6", // Low priority and task completed
+    redDisabled: "#F2433780", // High priority when disabled
+    yellowDisabled: "#FFD92880", // Medium priority when disabled
+    greenDisabled: "#9ee73f80", // Low priority and task completed when disabled
     white: "#D9D9D9", // Titles
   };
