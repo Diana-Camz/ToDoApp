@@ -30,7 +30,7 @@ const DetailTask = ({navigation, route}) => {
         <CustomUserName {...user}/>
       </View>
       <View>
-        <CustomTitle title={`Take a look at your\ntask!`} type='msgScreen' numberOfLines={0}/>
+        <CustomTitle title={'Take a look at your task !!'} type='msgScreen' numberOfLines={0}/>
       </View>
       <View style={detail.container}>
         <View style={detail.titleContainer}>
@@ -53,7 +53,7 @@ const DetailTask = ({navigation, route}) => {
             showsHorizontalScrollIndicator={false} />
         </View>
         <View style={detail.buttonContainer}>
-          <CustomIcon onPress={() => navigation.navigate('EditTask')} iconName="pencil-sharp" size={35} color={colorsTheme.darkBlue}/>
+          <CustomIcon onPress={() => navigation.navigate('EditTask', {id:id})} iconName="pencil-sharp" size={35} color={colorsTheme.darkBlue}/>
           <CustomIcon onPress={() => {}} iconName="trash" size={35} color={colorsTheme.redTrash}/>
         </View>
       </View>

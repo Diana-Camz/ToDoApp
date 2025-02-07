@@ -17,6 +17,7 @@ export const fontsTheme = {
   },
   xlarge: {
     fontSize: 25,
+    textAlign: 'center',
     color: colorsTheme.white,
   },
   large: {
@@ -71,7 +72,11 @@ export const fontsTheme = {
   },
   input: {
     fontSize: 17,
-    color: colorsTheme.lightblue,
+    color: colorsTheme.darkBlue,
+  },
+  inputFocused: {
+    fontSize: 17,
+    color: colorsTheme.lightBlueSecond,
   }
 
 };

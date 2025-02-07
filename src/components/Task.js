@@ -1,7 +1,7 @@
 import ReanimatedSwipeable from 'react-native-gesture-handler/ReanimatedSwipeable'
 import Reanimated, {useDerivedValue, useAnimatedStyle} from 'react-native-reanimated'
 import { View, Text, Pressable } from 'react-native'
-import React, { useState } from 'react'
+import React, { useState, useRef } from 'react'
 import CustomIcon from './CustomIcon'
 import { colorsTheme } from '../styles/colorsTheme'
 import { task } from '../styles/components/task'
@@ -9,7 +9,7 @@ import { useNavigation } from '@react-navigation/native'
 import CustomTitle from './CustomTitle'
 
 
-const RightAction = ({prog, drag}) => {
+const RightAction = ({prog, drag, id}) => {
     const navigation = useNavigation();
 
     const animatedOffset = useDerivedValue(() => {
@@ -27,7 +27,7 @@ const RightAction = ({prog, drag}) => {
         <Reanimated.View style={styleAnimation}>
             <View style={[task.basicContainer]}>
                 <CustomIcon 
-                    onPress={() => navigation.navigate('EditTask')} 
+                    onPress={() => navigation.navigate('EditTask', {id: id})} 
                     iconName="pencil-sharp" size={35} 
                     color={colorsTheme.darkBlue}
                 />
@@ -42,9 +42,18 @@ const RightAction = ({prog, drag}) => {
     );
 }
 
-const Task = ({title, emoji, time, status, priority, id}) => {
+const Task = ({title, emoji, time, status, priority, id, openTaskId, setOpenTaskId, swipeableRef}) => {
     const navigation = useNavigation();
+    const localSwipeableRef = useRef(null);
     const [completed, setCompleted] = useState(status);
+    const handleSwipeableOpen = () => {
+        if (swipeableRef.current && swipeableRef.current !== localSwipeableRef.current) {
+            swipeableRef.current.close();
+        }
+        swipeableRef.current = localSwipeableRef.current;
+        setOpenTaskId(id);
+    };
+
     const priorityColor = () => {
         switch (priority) {
             case 'high': return colorsTheme.red;
@@ -55,9 +64,17 @@ const Task = ({title, emoji, time, status, priority, id}) => {
   return (
         <ReanimatedSwipeable
             key={id}
-            friction={2}
+            ref={localSwipeableRef}
+            friction={4}
+            overshootFriction={8}
             rightThreshold={40}
-            renderRightActions={(progress, drag) => <RightAction prog={progress} drag={drag} />}
+            renderRightActions={(progress, drag) => <RightAction prog={progress} drag={drag} id={id}/>}
+            onSwipeableWillOpen={handleSwipeableOpen}
+            onSwipeableClose={() => {
+                if (openTaskId === id) {
+                    setOpenTaskId(null);
+                }
+            }}
         >
             <Pressable 
                 onPress={() => navigation.navigate('DetailTask', {id: id})}
