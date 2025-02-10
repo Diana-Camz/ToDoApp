@@ -11,7 +11,6 @@ const Loader = () => {
       style={containers.loader}
       contentFit='cover'
       transition={1000}/>
-      <Text>Cargando...</Text>
     </View>
 
   );

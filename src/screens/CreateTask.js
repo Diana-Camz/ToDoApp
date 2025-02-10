@@ -1,4 +1,4 @@
-import { View, ScrollView } from 'react-native'
+import { View, ScrollView, Pressable,  } from 'react-native'
 import React, {useState} from 'react'
 import { containers } from '../styles/containers'
 import TaskInput from '../components/TaskInput'
@@ -8,16 +8,19 @@ import CustomIcon from '../components/CustomIcon'
 import CustomUserName from '../components/CustomUserName'
 import Loader from '../components/Loader'
 import { useUser } from '../hooks/useUser'
+import CategoryModal from '../components/CategoryModal'
 
 const CreateTask = ({navigation}) => {
   const {user, loadingUser} = useUser(3);
   const [focusedInput, setFocusedInput] = useState(null);
+  const [selectedCategories, setSelectedCategories] = useState([]);
+  const [modalVisible, setModalVisible] = useState(false);
 
   if(loadingUser) {
     return (
     <Loader/>
     )
-  };
+  }; 
 
   return (
     <View style={containers.main}>
@@ -55,14 +58,20 @@ const CreateTask = ({navigation}) => {
             onFocus={() => setFocusedInput('Time')}
             onBlur={() => setFocusedInput(null)}
             />
-          <TaskInput 
-            title={'Category'} 
-            placeholder={'Personal'} 
-            iconName='folder-open'
-            isFocused={focusedInput === 'Category'}
-            onFocus={() => setFocusedInput('Category')}
-            onBlur={() => setFocusedInput(null)}
-            />
+          <Pressable onPress={() => {setModalVisible(true); setFocusedInput('Category');}}>
+            <TaskInput 
+              title={'Category'} 
+              placeholder={'Personal'} 
+              iconName='folder-open'
+              pointerEvents="none"
+              editable={false}
+              isFocused={focusedInput === 'Category'}
+              onFocus={() => {
+                setFocusedInput('Category')
+                setModalVisible(true)}}
+              onBlur={() => setFocusedInput(null)}
+              />
+          </Pressable>
           <TaskInput 
             title={'Priority'}  
             iconName='podium'
@@ -80,6 +89,11 @@ const CreateTask = ({navigation}) => {
             />
         </ScrollView>
       </View>
+        <CategoryModal
+          modalVisible={modalVisible}
+          setModalVisible={setModalVisible}
+          selectedCategories={selectedCategories}
+          setSelectedCategories={setSelectedCategories}/>
     </View>
   )
 }
