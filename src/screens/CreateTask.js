@@ -1,5 +1,7 @@
 import { View, ScrollView, Pressable,  } from 'react-native'
 import React, {useState} from 'react'
+import DateTimePicker from "@react-native-community/datetimepicker";
+import { format } from 'date-fns';
 import { containers } from '../styles/containers'
 import TaskInput from '../components/TaskInput'
 import { colorsTheme } from '../styles/colorsTheme'
@@ -14,7 +16,9 @@ const CreateTask = ({navigation}) => {
   const {user, loadingUser} = useUser(3);
   const [focusedInput, setFocusedInput] = useState(null);
   const [selectedCategories, setSelectedCategories] = useState([]);
-  const [modalVisible, setModalVisible] = useState(false);
+  const [modalVisible, setModalVisible] = useState(null);
+  const [selectedDate, setSelectedDate] = useState(null);
+  const [date, setDate] = useState(new Date());
 
   if(loadingUser) {
     return (
@@ -42,14 +46,19 @@ const CreateTask = ({navigation}) => {
             onFocus={() => setFocusedInput('Name')}
             onBlur={() => setFocusedInput(null)}
             />
-          <TaskInput 
-            title={'Date'} 
-            placeholder={'17 july, 2020'} 
-            iconName='calendar-sharp'
-            isFocused={focusedInput === 'Date'}
-            onFocus={() => setFocusedInput('Date')}
-            onBlur={() => setFocusedInput(null)}
+          <Pressable onPress={() => {setModalVisible('Date'); setFocusedInput('Date');}}>
+            <TaskInput 
+              title={'Date'} 
+              placeholder={'July 25, 2025'}
+              value={selectedDate ? format(selectedDate, 'MMMM d, yyyy') : ''} 
+              iconName='calendar-sharp'
+              pointerEvents="none"
+              editable={false}
+              isFocused={focusedInput === 'Date'}
+              onFocus={() => setFocusedInput('Date')}
+              onBlur={() => setFocusedInput(null)}
             />
+          </Pressable>
           <TaskInput 
             title={'Time'}
             placeholder={'8:30 am'}  
@@ -58,7 +67,7 @@ const CreateTask = ({navigation}) => {
             onFocus={() => setFocusedInput('Time')}
             onBlur={() => setFocusedInput(null)}
             />
-          <Pressable onPress={() => {setModalVisible(true); setFocusedInput('Category');}}>
+          <Pressable onPress={() => {setModalVisible('Category'); setFocusedInput('Category');}}>
             <TaskInput 
               title={'Category'} 
               placeholder={'Personal'} 
@@ -90,10 +99,25 @@ const CreateTask = ({navigation}) => {
         </ScrollView>
       </View>
         <CategoryModal
-          modalVisible={modalVisible}
+          modalVisible={modalVisible === 'Category'}
           setModalVisible={setModalVisible}
           selectedCategories={selectedCategories}
-          setSelectedCategories={setSelectedCategories}/>
+          setSelectedCategories={setSelectedCategories}
+        />
+        {modalVisible === 'Date' && (
+          <DateTimePicker
+            mode="date"
+            value={date}
+            display="calendar"
+            onChange={(event, selected) => {
+              if(selected){
+                setSelectedDate(selected);
+                setDate(selected)
+              }
+              setModalVisible(null)
+            }}
+          />
+        )}
     </View>
   )
 }
