@@ -18,6 +18,7 @@ const CreateTask = ({navigation}) => {
   const [selectedCategories, setSelectedCategories] = useState([]);
   const [modalVisible, setModalVisible] = useState(null);
   const [selectedDate, setSelectedDate] = useState(null);
+  const [selectedTime, setSelectedTime] = useState(null);
   const [date, setDate] = useState(new Date());
 
   if(loadingUser) {
@@ -59,14 +60,19 @@ const CreateTask = ({navigation}) => {
               onBlur={() => setFocusedInput(null)}
             />
           </Pressable>
-          <TaskInput 
-            title={'Time'}
-            placeholder={'8:30 am'}  
-            iconName='time'
-            isFocused={focusedInput === 'Time'}
-            onFocus={() => setFocusedInput('Time')}
-            onBlur={() => setFocusedInput(null)}
-            />
+          <Pressable onPress={() => {setModalVisible('Time'); setFocusedInput('Time');}}>
+            <TaskInput 
+              title={'Time'}
+              placeholder={'8:30 am'}
+              value={selectedTime ? format(selectedTime, 'hh:mm a') : ''}
+              iconName='time'
+              pointerEvents="none"
+              editable={false}
+              isFocused={focusedInput === 'Time'}
+              onFocus={() => setFocusedInput('Time')}
+              onBlur={() => setFocusedInput(null)}
+              />
+          </Pressable>
           <Pressable onPress={() => {setModalVisible('Category'); setFocusedInput('Category');}}>
             <TaskInput 
               title={'Category'} 
@@ -112,6 +118,20 @@ const CreateTask = ({navigation}) => {
             onChange={(event, selected) => {
               if(selected){
                 setSelectedDate(selected);
+                setDate(selected)
+              }
+              setModalVisible(null)
+            }}
+          />
+        )}
+        {modalVisible === 'Time' && (
+          <DateTimePicker
+            mode="time"
+            value={date}
+            display="default"
+            onChange={(event, selected) => {
+              if(selected){
+                setSelectedTime(selected);
                 setDate(selected)
               }
               setModalVisible(null)
