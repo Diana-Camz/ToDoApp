@@ -8,6 +8,19 @@ const imagesCategory = [
     {title: "Personal", image: require('../images/personal.png') },
     {title: "Errands", image: require('../images/errands.png') },
     {title: "Social", image: require('../images/social.png') },
+    {title: "Education", image: require('../images/education.png') }, 
+    {title: "Entertainment", image: require('../images/entertainment.png') }, 
+    {title: "Finance", image: require('../images/finance.png') }, 
+    {title: "Hobby", image: require('../images/hobby.png') }, 
+    {title: "Chores", image: require('../images/chores.png') }, 
+    {title: "Household", image: require('../images/household.png') }, 
+    {title: "Productivity", image: require('../images/productivity.png') }, 
+    {title: "Outdoor", image: require('../images/outdoor.png') }, 
+    {title: "Self care", image: require('../images/self_care.png') }, 
+    {title: "Travel", image: require('../images/travel.png') }, 
+    {title: "Shopping", image: require('../images/shopping.png') },
+    {title: "Leisure", image: require('../images/leisure.png') },
+    {title: "Music", image: require('../images/music.png') },
   ];
   
   export default imagesCategory;
