@@ -16,6 +16,7 @@ const CreateTask = ({navigation}) => {
   const {user, loadingUser} = useUser(3);
   const [focusedInput, setFocusedInput] = useState(null);
   const [selectedCategories, setSelectedCategories] = useState([]);
+  const [categoryText, setCategoryText] = useState('');
   const [modalVisible, setModalVisible] = useState(null);
   const [selectedDate, setSelectedDate] = useState(null);
   const [selectedTime, setSelectedTime] = useState(null);
@@ -76,7 +77,8 @@ const CreateTask = ({navigation}) => {
           <Pressable onPress={() => {setModalVisible('Category'); setFocusedInput('Category');}}>
             <TaskInput 
               title={'Category'} 
-              placeholder={'Personal'} 
+              placeholder={'Personal'}
+              value={categoryText} 
               iconName='folder-open'
               pointerEvents="none"
               editable={false}
@@ -107,6 +109,7 @@ const CreateTask = ({navigation}) => {
         <CategoryModal
           modalVisible={modalVisible === 'Category'}
           setModalVisible={setModalVisible}
+          setCategoryText={setCategoryText}
           selectedCategories={selectedCategories}
           setSelectedCategories={setSelectedCategories}
         />
