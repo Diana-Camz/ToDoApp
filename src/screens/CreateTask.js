@@ -11,6 +11,8 @@ import CustomUserName from '../components/CustomUserName'
 import Loader from '../components/Loader'
 import { useUser } from '../hooks/useUser'
 import CategoryModal from '../components/CategoryModal'
+import EmojiModal from '../components/EmojiModal';
+import { taskInput } from '../styles/components/taskInput';
 
 const CreateTask = ({navigation}) => {
   const {user, loadingUser} = useUser(3);
@@ -21,6 +23,7 @@ const CreateTask = ({navigation}) => {
   const [selectedDate, setSelectedDate] = useState(null);
   const [selectedTime, setSelectedTime] = useState(null);
   const [date, setDate] = useState(new Date());
+  const [selectedEmoji, setSelectedEmoji] = useState('😊')
 
   if(loadingUser) {
     return (
@@ -39,15 +42,23 @@ const CreateTask = ({navigation}) => {
       </View>
       <View style={containers.createOrEdit}>
         <ScrollView showsVerticalScrollIndicator={false}>
-          <TaskInput 
-            title={'Name'}
-            placeholder={'Read for 20 minutes'}  
-            iconName='pencil-sharp'
-            maxLength={30}
-            isFocused={focusedInput === 'Name'}
-            onFocus={() => setFocusedInput('Name')}
-            onBlur={() => setFocusedInput(null)}
-            />
+          <View style={containers.nameContainer}>
+            <TaskInput 
+              title={'Name'}
+              placeholder={'Read for 20 minutes'}  
+              iconName='pencil-sharp'
+              maxLength={30}
+              isFocused={focusedInput === 'Name'}
+              onFocus={() => setFocusedInput('Name')}
+              onBlur={() => setFocusedInput(null)}
+              />
+            <Pressable 
+              onPress={() => setModalVisible('Emoji')}
+              style={taskInput.emojiContainer}>
+                <CustomTitle title={'Emoji'} type='input'/>
+                <CustomTitle title={selectedEmoji} type='xlarge'/>
+            </Pressable>
+          </View>
           <Pressable onPress={() => {setModalVisible('Date'); setFocusedInput('Date');}}>
             <TaskInput 
               title={'Date'} 
@@ -112,6 +123,11 @@ const CreateTask = ({navigation}) => {
           setCategoryText={setCategoryText}
           selectedCategories={selectedCategories}
           setSelectedCategories={setSelectedCategories}
+        />
+        <EmojiModal 
+          modalVisible={modalVisible === 'Emoji'} 
+          setModalVisible={setModalVisible} 
+          setSelectedEmoji={setSelectedEmoji}
         />
         {modalVisible === 'Date' && (
           <DateTimePicker

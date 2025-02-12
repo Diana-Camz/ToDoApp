@@ -83,4 +83,9 @@ export const containers = StyleSheet.create({
   categoryList: {
     height: '90%',
   },
+  nameContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+  }
 });

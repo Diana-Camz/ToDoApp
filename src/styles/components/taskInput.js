@@ -20,6 +20,25 @@ export const taskInput = StyleSheet.create({
         borderWidth: 2, 
         borderColor: colorsTheme.darkBlue, 
     },
+    nameContainer: {
+        height: 75,
+        width: '75%',
+        borderRadius: 15,
+        marginBottom: 10,
+        backgroundColor: colorsTheme.darkBlueSecond,
+        borderWidth: 2,
+        borderColor: colorsTheme.darkBlue,
+    },
+    emojiContainer: {
+        height: 75,
+        width: '22%',
+        alignItems: 'center',
+        borderRadius: 15,
+        marginBottom: 10,
+        backgroundColor: colorsTheme.darkBlueSecond,
+        borderWidth: 2,
+        borderColor: colorsTheme.darkBlue  
+    },
     titleContainer: {
         flexDirection: 'row',
         justifyContent: 'flex-start',
