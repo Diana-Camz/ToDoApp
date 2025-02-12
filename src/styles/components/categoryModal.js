@@ -1,7 +1,7 @@
 import { StyleSheet } from "react-native";
 import { colorsTheme } from "../colorsTheme";
 
-export const modalCategory = StyleSheet.create({
+export const categoryModal = StyleSheet.create({
     modalBackground: {
         marginTop: 280,
         height: 300,
@@ -19,7 +19,7 @@ export const modalCategory = StyleSheet.create({
       },
       itemsContainer: {
         width: '100%',
-        height: 200,
+        height: 180,
         borderRadius: 10,
         paddingHorizontal: 5,
         paddingVertical: 3,

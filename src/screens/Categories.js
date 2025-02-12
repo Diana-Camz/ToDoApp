@@ -1,4 +1,4 @@
-import { View, Text } from 'react-native'
+import { View } from 'react-native'
 import React from 'react'
 import { containers } from '../styles/containers'
 import CustomIcon from '../components/CustomIcon'
@@ -29,7 +29,7 @@ const Categories = ({navigation}) => {
         <View style={containers.homeSections}>
             <CustomTitle title={'ALL CATEGORIES'} type='large'/>
         </View>
-        <View>
+        <View style={containers.categoryList}>
             <FlatList
                 data={categories}
                 keyExtractor={item => item.category}

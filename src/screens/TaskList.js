@@ -4,13 +4,11 @@ import { containers } from '../styles/containers'
 import CustomIcon from '../components/CustomIcon'
 import { colorsTheme } from '../styles/colorsTheme'
 import CustomTitle from '../components/CustomTitle'
-import CustomButton from '../components/CustomButton'
 import { FlatList } from 'react-native-gesture-handler'
 import Loader from '../components/Loader'
 import { useTasks } from '../hooks/useTasks'
 import Task from '../components/Task'
 import { taskList } from '../styles/screens/taskList'
-import { customButton } from '../styles/components/customButton'
 
 const TaskList = ({navigation, route}) => {
     const {category, showAll} = route.params || {};
@@ -55,13 +53,6 @@ const TaskList = ({navigation, route}) => {
                 showsVerticalScrollIndicator={false}
             />
         </View>
-        {category
-        && 
-        <View style={taskList.buttonContainer}>
-            <CustomButton 
-            title={'Delete Category'}
-            container={customButton.darkContainer} />
-        </View>}
       </View>
     </View>
   )

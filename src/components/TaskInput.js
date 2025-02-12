@@ -1,5 +1,5 @@
-import { View, Text, TextInput } from 'react-native';
-import React, { use, useState } from 'react';
+import { View, TextInput } from 'react-native';
+import React, { useState } from 'react';
 import CustomIcon from './CustomIcon';
 import CustomTitle from './CustomTitle';
 import SwitchSelector from "react-native-switch-selector";
