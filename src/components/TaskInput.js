@@ -19,8 +19,10 @@ const TaskInput = ({iconName, title, placeholder, value, pointerEvents, editable
     }
   };
   
-  const descrContainer = title === 'Description'
+  const containers = title === 'Description'
       ? taskInput.descriptionContainer
+      : title === 'Name'
+      ? taskInput.nameContainer
       : taskInput.container
 
       const options = [
@@ -34,7 +36,7 @@ const TaskInput = ({iconName, title, placeholder, value, pointerEvents, editable
       }
   return (
     <View 
-      style={[descrContainer, isFocused ? taskInput.focusedInput : {}]}>
+      style={[containers, isFocused ? taskInput.focusedInput : {}]}>
       <View style={taskInput.titleContainer}>
         <CustomIcon iconName={iconName} color={isFocused ? colorsTheme.lightBlueSecond : colorsTheme.darkBlue} size={20}/>
         <CustomTitle title={title} type={isFocused ? 'inputFocused':'input'}/>
