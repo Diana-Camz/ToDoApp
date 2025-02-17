@@ -1,0 +1,43 @@
+@api = http://localhost:8080
+
+###
+GET {{api}}/user/7
+
+### 
+POST {{api}}/tasks
+Accept: application/json
+Content-Type: application/json
+
+{
+    "title": "Doctor Appointment",
+    "status": false,
+    "date": "2025-03-25",
+    "time": "15:00:00",
+    "priority": "high",
+    "description": "Annual health checkup with Dr. Weeknd.",
+    "emoji": "📖",
+    "user_id": 4,
+    "categories": [5, 7]
+}
+
+###
+PUT {{api}}/task/26
+Accept: application/json
+Content-Type: application/json
+
+{
+    "title": "Run Motivation",
+    "status": false,
+    "date": "2025-03-25",
+    "time": "15:00:00",
+    "priority": "high",
+    "description": "Run for 20 minutes",
+    "emoji": "🦵",
+    "user_id": 4,
+    "categories": [8,9,3]
+}
+
+###
+DELETE  {{api}}/task/21
+Accept: application/json
+Content-Type: application/json
