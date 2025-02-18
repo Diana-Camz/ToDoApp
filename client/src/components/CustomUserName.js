@@ -1,10 +1,12 @@
 import { Text, View, Image, Pressable } from 'react-native'
-import React, { useState } from 'react'
+import React from 'react'
 import {customUserName} from '../styles/components/customUserName'
 import { containers } from '../styles/containers'
 import CustomTitle from './CustomTitle'
+import imageMapping from "../data/imageMapping";
 
-const CustomUserName = ({name, lastname, image, screen}) => {
+const CustomUserName = ({name, lastname, image_url, screen}) => {
+    const imageSource = imageMapping[image_url] || require("../../assets/avatar1.webp");
 
      const userNameStyles = screen === 'home' 
         ? [containers.userName_home, {marginLeft: 10}] 
@@ -13,8 +15,8 @@ const CustomUserName = ({name, lastname, image, screen}) => {
         <View style={userNameStyles}>
             <View>
                 { screen === 'home'
-                ? (<Image source={image} style={customUserName.image_home}/>)
-                : (<Image source={image} style={customUserName.image}/>)}
+                ? (<Image source={imageSource} style={customUserName.image_home}/>)
+                : (<Image source={imageSource} style={customUserName.image}/>)}
             </View>
             <View style={userNameStyles[1]}>
                 { screen === 'home'
