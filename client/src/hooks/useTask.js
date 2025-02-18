@@ -1,19 +1,19 @@
 import { useEffect, useState } from "react"
-import exampleTask from "../data/exampleTask";
+import { fetchTask } from "../api/requests";
 
 
-export const useTask = (id) => {
+export const useTask =(userId, taskId) => {
     const [loadingTask, setLoadingTask] = useState(true);
     const [task, setTask] = useState(null);
 
 
-    const getTaskData = () => {
+    const getTaskData =  async () => {
         try {
-            const data = exampleTask.find(task => task.id === String(id));
+            const data = await fetchTask(userId, taskId);
             if (data){
                 setTask(data)
             }else {
-                console.error(`Task with id: ${id} not found`)
+                console.error(`Task with id: ${taskId} not found`)
             }
         } catch (error) {
             console.error('Error fetching task data')
@@ -23,8 +23,10 @@ export const useTask = (id) => {
     }
 
     useEffect(() => {
-        getTaskData();
-    }, [id]);
+        if (taskId) {
+            getTaskData();
+        }
+    }, [taskId]);
 
     return {task, loadingTask}
 }

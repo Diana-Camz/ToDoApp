@@ -2,6 +2,9 @@ import { StyleSheet } from "react-native";
 import { colorsTheme } from "../colorsTheme";
 
 export const customButton = StyleSheet.create({
+  container:{
+    alignItems: 'center',
+  },
   darkContainer: {
     backgroundColor: colorsTheme.dark,
     height: 54,
