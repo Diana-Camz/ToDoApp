@@ -10,22 +10,6 @@ const pool = mysql.createPool({
     database: process.env.MYSQL_DATABASE,
 }).promise();
 
-export async function getTaskByID(id){
-    const [row] = await pool.query(
-        `SELECT * FROM tasks WHERE id = ?;`, 
-        [id]
-    );
-    return row[0];
-};
-
-export async function getTasksByUserID(id){
-    const [row] = await pool.query(
-        `SELECT * FROM tasks WHERE user_id = ?;`, 
-        [id]
-    );
-    console.log(row)
-    return row;
-};
 
 export async function getUserByID(id){
     const [row] = await pool.query(
@@ -56,8 +40,24 @@ export async function getTasksWithCategories(user_id){
     return rows;
 };
 
+export async function getTaskWithCategories(task_id, user_id) {
+    const [rows] = await pool.query(
+        `SELECT t.id AS task_id, t.title, t.status, t.date, t.time, t.priority, 
+                t.description, t.emoji, t.user_id,
+                GROUP_CONCAT(c.name ORDER BY c.name SEPARATOR ' | ') AS categories
+         FROM tasks t
+         LEFT JOIN task_categories tc ON t.id = tc.task_id
+         LEFT JOIN categories c ON tc.category_id = c.id
+         WHERE t.id = ? AND t.user_id = ?
+         GROUP BY t.id;`,
+        [task_id, user_id]
+    );
+    
+    return rows.length > 0 ? rows[0] : null;
+};
+
 //CREATE
-export async function createTask(title, status, date, time, priority, description, emoji, user_id, categories) {
+export async function createTask(title, status, date, time, priority, description, emoji, user_id) {
     const [result] = await pool.query(
         `INSERT INTO tasks (title, status, date, time, priority, description, emoji, user_id)
          VALUES (?, ?, ?, ?, ?, ?, ?, ?)`, [title, status, date, time, priority, description, emoji, user_id]);

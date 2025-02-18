@@ -5,6 +5,7 @@ import {GestureHandlerRootView} from 'react-native-gesture-handler'
 import * as SplashScreen from 'expo-splash-screen';
 import Loader from './src/components/Loader';
 import { useCallback, useEffect, useState } from 'react';
+import { UserProvider } from './src/context/userContext';
 
 SplashScreen.preventAutoHideAsync()
 
@@ -36,9 +37,11 @@ const App= () => {
 
   return (
     <GestureHandlerRootView style={{ flex: 1 }}>
-      <NavigationContainer onReady={onLayoutRootView}>
-        <Navigation />
-      </NavigationContainer>
+      <UserProvider>
+        <NavigationContainer onReady={onLayoutRootView}>
+          <Navigation />
+        </NavigationContainer>
+      </UserProvider>
     </GestureHandlerRootView>
   );
 }
