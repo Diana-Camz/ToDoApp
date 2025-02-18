@@ -1,30 +1,31 @@
 import { useEffect, useState } from "react"
-import exampleTask from "../data/exampleTask";
+import { fetchTasks } from "../api/requests";
 
 
-export const useTasks = (id) => {
+export const useTasks = (userId) => {
     const [loadingTasks, setLoadingTasks] = useState(true);
     const [tasks, setTasks] = useState(null);
 
-
-    const getTasksData = () => {
+    const getTasksData = async () => {
         try {
-            const data = exampleTask.filter(task => task.userId === Number(id));
+            const data = await fetchTasks(userId)
             if (data.length > 0){
                 setTasks(data)
             }else {
-                console.error(`Tasks with userId: ${id} not found`)
+                console.error(`Tasks with userId: ${userId} not found`)
             }
         } catch (error) {
-            console.error('Error fetching tasks data')
+            console.error('Error fetching tasks data', error)
         } finally {
             setLoadingTasks(false)
         }
     }
 
     useEffect(() => {
-        getTasksData();
-    }, [id]);
+        if (userId) {
+            getTasksData();
+        }
+    }, [userId]);
 
     return {tasks, loadingTasks}
 }

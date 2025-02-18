@@ -11,8 +11,8 @@ import Task from '../components/Task'
 import { taskList } from '../styles/screens/taskList'
 
 const TaskList = ({navigation, route}) => {
-    const {category, showAll} = route.params || {};
-    const {tasks, loadingTasks} = useTasks(5);
+    const {category, user_id, showAll} = route.params || {};
+    const {tasks, loadingTasks} = useTasks(user_id);
     const [openTaskId, setOpenTaskId] = useState(null);
     const swipeableRef = useRef(null);
 
@@ -20,7 +20,9 @@ const TaskList = ({navigation, route}) => {
     const filteredTasks = showAll
         ? tasks || []
         : category
-            ? (tasks || []).filter(task => task.category.includes(category))
+            ? (tasks || []).filter(task => Array.isArray(task.categories)
+                ? task.categories.includes(category)
+                : String(task.categories).includes(category))
             : [];
 
             if(loadingTasks || (filteredTasks.length === 0 && !showAll)){
@@ -39,17 +41,18 @@ const TaskList = ({navigation, route}) => {
       </View>
       <View>
         <View style={containers.homeSections}>
-            <CustomTitle title={category? `${category} Tasks` : 'ALL TASKS'} type='large'/>
+            <CustomTitle title={category? `${category.toUpperCase()} TASKS` : 'ALL TASKS'} type='large'/>
         </View>
         <View style={taskList.container}>
             <FlatList
                 data={filteredTasks}
-                keyExtractor={item => item.id.toString()}
+                keyExtractor={item => item.task_id.toString()}
                 renderItem={({item}) => 
                     <Task {...item} 
                       openTaskId={openTaskId} 
                       setOpenTaskId={setOpenTaskId} 
-                      swipeableRef={swipeableRef}/>}
+                      swipeableRef={swipeableRef}
+                    />}
                 showsVerticalScrollIndicator={false}
             />
         </View>
