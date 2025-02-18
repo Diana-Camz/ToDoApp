@@ -4,13 +4,15 @@ import { containers } from '../styles/containers'
 import CustomIcon from '../components/CustomIcon'
 import { colorsTheme } from '../styles/colorsTheme'
 import CustomTitle from '../components/CustomTitle'
-import { useCategory } from '../hooks/useCategory'
+import { useCategoryForUser } from '../hooks/useCategoryForUser'
 import { FlatList } from 'react-native-gesture-handler'
 import Category from '../components/Category'
 import Loader from '../components/Loader'
 
-const Categories = ({navigation}) => {
-    const {categories, loadingCategories} = useCategory([]);
+const Categories = ({navigation, route}) => {
+    const {user_id} = route.params;
+    const {categoriesForUser, loadingCategories} = useCategoryForUser(user_id);
+
 
     if(loadingCategories){
         return <Loader/>
@@ -31,13 +33,15 @@ const Categories = ({navigation}) => {
         </View>
         <View style={containers.categoryList}>
             <FlatList
-                data={categories}
+                data={categoriesForUser}
                 keyExtractor={item => item.category}
                 numColumns={2}
                 renderItem={({item}) => 
                 <Category
                     title={item.category}
                     tasks={item.count}
+                    image_url={item.image_url}
+                    user_id={user_id}
                     navigation={navigation}
                 />}
                 showsVerticalScrollIndicator={false}

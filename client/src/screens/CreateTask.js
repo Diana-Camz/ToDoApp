@@ -13,9 +13,11 @@ import { useUser } from '../hooks/useUser'
 import CategoryModal from '../components/CategoryModal'
 import EmojiModal from '../components/EmojiModal';
 import { taskInput } from '../styles/components/taskInput';
+import { useUserContext } from '../context/userContext';
 
 const CreateTask = ({navigation}) => {
-  const {user, loadingUser} = useUser(3);
+  const { user } = useUserContext();
+  const {userData, loadingUser} = useUser(user);
   const [focusedInput, setFocusedInput] = useState(null);
   const [selectedCategories, setSelectedCategories] = useState([]);
   const [categoryText, setCategoryText] = useState('');
@@ -35,7 +37,7 @@ const CreateTask = ({navigation}) => {
     <View style={containers.main}>
       <View style={containers.header}>
         <CustomIcon onPress={() => navigation.goBack()} iconName="arrow-back" size={35} color={colorsTheme.darkBlue}/>
-        <CustomUserName {...user}/>
+        <CustomUserName {...userData}/>
       </View>
       <View>
         <CustomTitle title={"Let's do something else !!"} type='msgScreen' numberOfLines={0}/>

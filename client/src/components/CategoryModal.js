@@ -1,6 +1,5 @@
 import { View, Modal, FlatList, } from 'react-native'
-import React from 'react'
-import imagesCategory from '../data/imagesCategory'
+import React, {useEffect} from 'react'
 import CustomTitle from './CustomTitle';
 import { colorsTheme } from '../styles/colorsTheme';
 import { categoryModal } from '../styles/components/categoryModal';
@@ -9,25 +8,34 @@ import { customButton } from '../styles/components/customButton';
 import CustomIcon from './CustomIcon';
 import SelectCategory from './SelectCategory';
 import { selCategory } from '../styles/components/selCategory';
+import { useAllCategories } from '../hooks/useAllCategories';
 
 
-const CategoryModal = ({ modalVisible, setModalVisible, setCategoryText, selectedCategories, setSelectedCategories }) => {
+const CategoryModal = ({ task, modalVisible, setModalVisible, setCategoryText, selectedCategories, setSelectedCategories }) => {
+    const {allCategories} = useAllCategories();
+
+    useEffect(() => {
+        if (task?.categories && !selectedCategories.length === 0) {
+            const selected = task.categories.split(' | ').map(cat => cat.trim());
+            setSelectedCategories(selected);
+            setCategoryText(selected.join(' | '));
+        }
+    }, [task?.categories]);
 
     const toggleCategory = (category) => {
-        setSelectedCategories((prevCategories) =>
-          prevCategories.includes(category)
-          ? prevCategories.filter((cat) => cat !== category)
-        : [...prevCategories, category])
+        setSelectedCategories(prevCategories =>
+           prevCategories.includes(category)
+          ? prevCategories.filter(cat => cat !== category)
+          : [...prevCategories, category]
+        )
     }
 
     const handleDone = () => {
-        if(selectedCategories.length > 0) {
-            setCategoryText(selectedCategories.map(cat => cat.title).join(' | '));
-        }else{
-            setCategoryText('');
-        }
-        setModalVisible(null)
+        setCategoryText(selectedCategories.join(' | '));
+            setModalVisible(false);
     }
+
+
 
 
   return (
@@ -44,14 +52,15 @@ const CategoryModal = ({ modalVisible, setModalVisible, setCategoryText, selecte
                 <CustomTitle title={'Select Categories'} type='large'/> 
                     <View style={categoryModal.itemsContainer}>
                             <FlatList
-                                data={imagesCategory}
-                                keyExtractor={(item) => item.title}
+                                data={allCategories}
+                                keyExtractor={(item) => item.id.toString()}
                                 horizontal={true}
                                 renderItem={({item}) => 
                                 <SelectCategory   
-                                    title={item.title}
-                                    onPress={() => toggleCategory(item)}
-                                    style={[selCategory.container, selectedCategories.includes(item) && selCategory.containerSelected]}
+                                    title={item.name}
+                                    image_url={item.image_url}
+                                    onPress={() => toggleCategory(item.name)}
+                                    style={[selCategory.container, selectedCategories.includes(item.name) && selCategory.containerSelected]}
                                 />
                                 }
                             />

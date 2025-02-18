@@ -1,0 +1,26 @@
+const categoryImages = {
+  "health.png": require("../../assets/health.png"),
+  "business.png": require("../../assets/business.png"),
+  "wellness.png": require("../../assets/wellness.png"),
+  "family.png": require("../../assets/family.png"),
+  "exercise.png": require("../../assets/exercise.png"),
+  "work.png": require("../../assets/work.png"),
+  "personal.png": require("../../assets/personal.png"),
+  "errands.png": require("../../assets/errands.png"),
+  "social.png": require("../../assets/social.png"),
+  "education.png": require("../../assets/education.png"),
+  "entertainment.png": require("../../assets/entertainment.png"),
+  "finance.png": require("../../assets/finance.png"),
+  "hobby.png": require("../../assets/hobby.png"),
+  "chores.png": require("../../assets/chores.png"),
+  "household.png": require("../../assets/household.png"),
+  "productivity.png": require("../../assets/productivity.png"),
+  "outdoor.png": require("../../assets/outdoor.png"),
+  "self_care.png": require("../../assets/self_care.png"),
+  "travel.png": require("../../assets/travel.png"),
+  "shopping.png": require("../../assets/shopping.png"),
+  "leisure.png": require("../../assets/leisure.png"),
+  "music.png": require("../../assets/music.png"),
+};
+  
+  export default categoryImages;
