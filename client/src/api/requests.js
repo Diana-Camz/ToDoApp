@@ -1,6 +1,6 @@
 import { API_USER, API_TASKS, API_TASK, API_CATEGORIES } from "./api";
 
-
+//GET//
 export async function fetchUser(id) {
     try {
       const response = await fetch(API_USER(id));
@@ -39,4 +39,16 @@ export async function fetchCategories() {
     } catch (error) {
       console.error("Error fetching categories:", error);
     }
+}
+
+//DELETE//
+export async function deleteTaskRequest(userId, taskId) {
+  try {
+    const response = await fetch(API_TASK(userId, taskId), {
+      method: 'DELETE'
+    });
+    return response
+  } catch (error) {
+    console.error("Error deleting task:", error);
+  }
 }

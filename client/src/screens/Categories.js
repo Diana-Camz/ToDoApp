@@ -8,13 +8,15 @@ import { useCategoryForUser } from '../hooks/useCategoryForUser'
 import { FlatList } from 'react-native-gesture-handler'
 import Category from '../components/Category'
 import Loader from '../components/Loader'
+import { useTasks } from '../hooks/useTasks'
 
 const Categories = ({navigation, route}) => {
     const {user_id} = route.params;
-    const {categoriesForUser, loadingCategories} = useCategoryForUser(user_id);
+    const {tasks, loadingTasks} = useTasks(user_id);
+    const {categoriesForUser, loadingCategories} = useCategoryForUser(tasks);
 
 
-    if(loadingCategories){
+    if(loadingCategories || loadingTasks){
         return <Loader/>
     }
   return (
@@ -32,20 +34,24 @@ const Categories = ({navigation, route}) => {
             <CustomTitle title={'ALL CATEGORIES'} type='large'/>
         </View>
         <View style={containers.categoryList}>
-            <FlatList
+          {categoriesForUser.length == 0
+            ? <View style={containers.emptyData}>
+                <CustomTitle title={"You haven't any Category yet !!"} type='msgScreen' numberOfLines={0}/>
+              </View>
+            : <FlatList
                 data={categoriesForUser}
                 keyExtractor={item => item.category}
                 numColumns={2}
                 renderItem={({item}) => 
-                <Category
-                    title={item.category}
-                    tasks={item.count}
-                    image_url={item.image_url}
-                    user_id={user_id}
-                    navigation={navigation}
-                />}
-                showsVerticalScrollIndicator={false}
-            />
+              <Category
+                  title={item.category}
+                  tasks={item.count}
+                  image_url={item.image_url}
+                  user_id={user_id}
+                  navigation={navigation}
+              />}
+              showsVerticalScrollIndicator={false}
+          />}
         </View>
       </View>
     </View>

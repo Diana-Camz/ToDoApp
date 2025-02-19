@@ -82,6 +82,11 @@ export const containers = StyleSheet.create({
   categoryList: {
     height: '90%',
   },
+  emptyData: {
+    alignItems: 'center',
+    verticalAlign: 'center',
+    marginTop: 110,
+  },
   nameContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',

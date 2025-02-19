@@ -15,11 +15,11 @@ import { useCategoryForUser } from '../hooks/useCategoryForUser'
 
 
 
-const Home = ({navigation}) => {
+const Home = ({navigation, route}) => {
   const { user } = useUserContext();
   const {userData, loadingUser} = useUser(user);
-  const {tasks, loadingTasks} = useTasks(user);
-  const {categoriesForUser, loadingCategories} = useCategoryForUser(user)
+  const {tasks, loadingTasks, getTasksData} = useTasks(user);
+  const {categoriesForUser, loadingCategories} = useCategoryForUser(tasks)
   const [showAll, setShowAll] = useState(false);
   const [openTaskId, setOpenTaskId] = useState(null);
   const swipeableRef = useRef(null);
@@ -38,17 +38,21 @@ const Home = ({navigation}) => {
       <View>
         <View style={containers.homeSections}>
             <CustomTitle title={'CATEGORIES'} type='regular'/>
-            <Pressable onPress={() => {navigation.navigate('Categories', {user_id: user})}}>
+            <Pressable onPress={() => {navigation.navigate('Categories', {user_id: userData.id})}}>
                 <CustomTitle title={'See more'} type='link'/>
             </Pressable>
         </View>
         <View style={containers.category}>
-            <FlatList
-            data={visibleCategories}
-            keyExtractor={item => item.category}
-            horizontal={true}
-            initialNumToRender={4}
-            renderItem={({item}) => 
+            {visibleCategories.length == 0
+            ? <View style={[containers.emptyData, {marginTop: 10}]}>
+                <CustomTitle title={"You haven't any category"} type='field' numberOfLines={0}/>
+              </View>
+            : <FlatList
+                data={visibleCategories}
+                keyExtractor={item => item.category}
+                horizontal={true}
+                initialNumToRender={4}
+                renderItem={({item}) => 
                 <Category   
                     title={item.category} 
                     tasks={item.count}
@@ -58,7 +62,7 @@ const Home = ({navigation}) => {
                     />
             }
             showsHorizontalScrollIndicator={false}
-            />
+            />}
         </View>
       </View>
       <View>
@@ -71,20 +75,28 @@ const Home = ({navigation}) => {
             </View>
         </View>
         <View style={containers.task}>
-            <FlatList
+            {tasks.length == 0
+            ? <View style={containers.emptyData}>
+                <CustomTitle title={"You haven't any Tasks yet !!"} type='msgScreen' numberOfLines={0}/>
+              </View>
+            : <FlatList
                 data={tasks}
-                keyExtractor={item => item.task_id}
+                keyExtractor={item => item.task_id.toString()}
+                extraData={tasks}
                 renderItem={({item}) => 
-                    <Task {...item}
-                      user_id={item.user_id}
-                      openTaskId={openTaskId} 
-                      setOpenTaskId={setOpenTaskId} 
-                      swipeableRef={swipeableRef}/>
-            }
-                showsVerticalScrollIndicator={false}/>
+                  <Task {...item}
+                    user_id={item.user_id}
+                    openTaskId={openTaskId} 
+                    setOpenTaskId={setOpenTaskId} 
+                    swipeableRef={swipeableRef}
+                    getTasksData={getTasksData}
+                  />
+                }
+                showsVerticalScrollIndicator={false}
+            />}
         </View>
       </View>
-      <View style={containers.addButon}>
+      <View style={[containers.addButon, {marginTop: 30}]}>
         <CustomIcon 
             onPress={() => navigation.navigate('CreateTask')} 
             iconName="add-sharp" 

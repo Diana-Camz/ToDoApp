@@ -62,13 +62,14 @@ export async function createTask(title, status, date, time, priority, descriptio
         `INSERT INTO tasks (title, status, date, time, priority, description, emoji, user_id)
          VALUES (?, ?, ?, ?, ?, ?, ?, ?)`, [title, status, date, time, priority, description, emoji, user_id]);
          const taskId = result.insertId;
-         return getTaskByID(taskId);
+         return {task_id: taskId};
 };
 
 export async function createTaskCategory(task_id, category_id) {
     const [result] = await pool.query(
         `INSERT INTO task_categories (task_id, category_id)
          VALUES (?, ?)`, [task_id, category_id]); 
+         //return result;
 }
 
 //UPDATE

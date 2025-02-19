@@ -1,20 +1,15 @@
-import { useEffect, useState } from "react"
-import { useTasks } from "./useTasks";
+import { useEffect, useState} from "react"
 import { useAllCategories } from "./useAllCategories";
 
 
-export const useCategoryForUser = (userId) => {
+export const useCategoryForUser = (tasks) => {
     const [loadingCategories, setLoadingCategories] = useState(true);
     const [categoriesForUser, setCategoriesForUser] = useState([]);
-    const {tasks, loadingTasks} = useTasks(userId);
-    const {allCategories, loadingAllCategories} = useAllCategories();
+    const {allCategories} = useAllCategories();
 
     const getCategoriesForUser = () => {
-        if(!tasks || tasks.length === 0){
-            console.error("Tasks not found for user");
-            return
-        }
         let categoryCount = {};
+        setLoadingCategories(true)
         try {
             tasks.forEach((task) => {
                 if(task.categories){ 
@@ -38,13 +33,11 @@ export const useCategoryForUser = (userId) => {
         } finally {
             setLoadingCategories(false)
         }
-    }
+    };
 
     useEffect(() => {
-        if(!loadingTasks){
             getCategoriesForUser();
-        }
-    }, [tasks, loadingTasks, allCategories, loadingAllCategories]);
+    }, [tasks]);
 
     return {categoriesForUser, loadingCategories}
 }

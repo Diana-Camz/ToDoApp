@@ -1,4 +1,4 @@
-import { Text, View } from 'react-native'
+import { Alert, Text, View } from 'react-native'
 import React from 'react'
 import CustomIcon from '../components/CustomIcon'
 import { colorsTheme } from '../styles/colorsTheme'
@@ -12,14 +12,42 @@ import { useUser } from '../hooks/useUser'
 import { useTask } from '../hooks/useTask'
 import { FlatList } from 'react-native-gesture-handler'
 import { useUserContext } from '../context/userContext'
+import { useDeleteTask } from '../hooks/useDeleteTask'
 
-const DetailTask = ({navigation, route}) => {
+const DetailTask = ({navigation, route,}) => {
   const {user_id, task_id} = route.params;
   const { user } = useUserContext();
   const {userData, loadingUser} = useUser(user);
+  const { deleteTask, loadingDelete } = useDeleteTask();
   const {task, loadingTask} = useTask(user_id, task_id)
 
-  if(loadingUser || loadingTask) {
+  const handleDeleteTask = async () => {
+    Alert.alert(
+        "Confirm Delete",
+        "Are you sure you want to delete this task?",
+        [
+            { text: "Cancel", style: "cancel" },
+            {
+                text: "Delete",
+                style: "destructive",
+                onPress: async () => {
+                    const success = await deleteTask(user_id, task_id);
+                    if (success) {
+                        Alert.alert('Task deleted', 'Task has been deleted successfully.', [
+                            { text: 'Ok', onPress: () => navigation.navigate("Home")}
+                          ])
+                        } else {
+                          Alert.alert('Error', 'An error occurred while deleting Task. Please try again', [
+                            { text: 'Try Again'}
+                          ])
+                    }
+                },
+            },
+        ]
+    )
+}
+
+  if(loadingUser || loadingTask || loadingDelete) {
     return (
     <Loader/>
     )
@@ -58,7 +86,7 @@ const DetailTask = ({navigation, route}) => {
         </View>
         <View style={detail.buttonContainer}>
           <CustomIcon onPress={() => navigation.navigate('EditTask', {user_id: userData.id, task_id: task.task_id})} iconName="pencil-sharp" size={35} color={colorsTheme.darkBlue}/>
-          <CustomIcon onPress={() => {}} iconName="trash" size={35} color={colorsTheme.redTrash}/>
+          <CustomIcon onPress={()=> handleDeleteTask()} iconName="trash" size={35} color={colorsTheme.redTrash}/>
         </View>
       </View>
     </View>

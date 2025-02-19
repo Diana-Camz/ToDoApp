@@ -79,7 +79,7 @@ app.use(cors(corsOptions));
        const task = await createTask(title, status, date, time, priority, description, emoji, user_id);
 
        if(categories && categories.length > 0){
-            await Promise.all(categories.map((category_id) => createTaskCategory(task.id, category_id)));
+            await Promise.all(categories.map((category_id) => createTaskCategory(task.task_id, category_id)));
        }
        res.status(201).send({status: "ok", task});
    } catch (error) {
@@ -110,9 +110,8 @@ app.delete('/users/:user_id/tasks/:task_id', async(req, res)=> {
       if (!taskExists) {
         return res.status(404).json({ message: "Task not found" });
       }
-
       await deleteTask(task_id)
-      res.status(202).send({message: 'Task deleted successfully'});
+      res.status(204).send({message: 'Task deleted successfully'});
     } catch (error) {
       console.error(error);
       res.status(500).json({ message: 'Error deleting task in /users/:user_id/tasks/:task_id' });

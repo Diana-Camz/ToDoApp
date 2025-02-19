@@ -1,6 +1,6 @@
 import ReanimatedSwipeable from 'react-native-gesture-handler/ReanimatedSwipeable'
 import Reanimated, {useDerivedValue, useAnimatedStyle} from 'react-native-reanimated'
-import { View, Text, Pressable } from 'react-native'
+import { View, Text, Pressable, Alert } from 'react-native'
 import React, { useState, useRef } from 'react'
 import { parse, format } from 'date-fns';
 import CustomIcon from './CustomIcon'
@@ -8,10 +8,39 @@ import { colorsTheme } from '../styles/colorsTheme'
 import { task } from '../styles/components/task'
 import { useNavigation } from '@react-navigation/native'
 import CustomTitle from './CustomTitle'
+import { useDeleteTask } from '../hooks/useDeleteTask';
 
 
-const RightAction = ({prog, drag, user_id, task_id}) => {
+const RightAction = ({prog, drag, user_id, task_id, getTasksData}) => {
     const navigation = useNavigation();
+    const { deleteTask } = useDeleteTask();
+
+    const handleDeleteTask = async () => {
+        Alert.alert(
+            "Confirm Delete",
+            "Are you sure you want to delete this task?",
+            [
+                { text: "Cancel", style: "cancel" },
+                {
+                    text: "Delete",
+                    style: "destructive",
+                    onPress: async () => {
+                        const success = await deleteTask(user_id, task_id);
+                        if (success) {
+                            await getTasksData()
+                            Alert.alert('Task deleted', 'Task has been deleted successfully.', [
+                                { text: 'Ok'}
+                              ])
+                            } else {
+                              Alert.alert('Error', 'An error occurred while deleting Task. Please try again', [
+                                { text: 'Try Again'}
+                              ])
+                        }
+                    },
+                },
+            ]
+        )
+    }
 
     const animatedOffset = useDerivedValue(() => {
         return drag.value + 100;
@@ -33,7 +62,7 @@ const RightAction = ({prog, drag, user_id, task_id}) => {
                     color={colorsTheme.darkBlue}
                 />
                 <CustomIcon 
-                    onPress={() => {}} 
+                    onPress={() => handleDeleteTask()} 
                     iconName="trash" 
                     size={35} 
                     color={colorsTheme.redTrash}
@@ -43,7 +72,7 @@ const RightAction = ({prog, drag, user_id, task_id}) => {
     );
 }
 
-const Task = ({title, emoji, time, status, priority, task_id, user_id, openTaskId, setOpenTaskId, swipeableRef}) => {
+const Task = ({title, emoji, time, status, priority, task_id, user_id, openTaskId, setOpenTaskId, swipeableRef, getTasksData}) => {
     const navigation = useNavigation();
     const localSwipeableRef = useRef(null);
     const formattedTime = time ? format(parse(time, 'HH:mm:ss', new Date()), 'hh:mm a') : '05:00 PM';
@@ -70,7 +99,7 @@ const Task = ({title, emoji, time, status, priority, task_id, user_id, openTaskI
             friction={4}
             overshootFriction={8}
             rightThreshold={40}
-            renderRightActions={(progress, drag) => <RightAction prog={progress} drag={drag} user_id={user_id} task_id={task_id}/>}
+            renderRightActions={(progress, drag) => <RightAction prog={progress} drag={drag} user_id={user_id} task_id={task_id} getTasksData={getTasksData}/>}
             onSwipeableWillOpen={handleSwipeableOpen}
             onSwipeableClose={() => {
                 if (openTaskId === task_id) {
