@@ -5,7 +5,7 @@ export const taskInput = StyleSheet.create({
     container: {
         height: 75,
         borderRadius: 15,
-        marginBottom: 10,
+        marginBottom: 5,
         backgroundColor: colorsTheme.darkBlueSecond,
         borderWidth: 2,
         borderColor: colorsTheme.darkBlue,
@@ -14,7 +14,8 @@ export const taskInput = StyleSheet.create({
         justifyContent: 'space-between',
         height: 'auto',
         borderRadius: 15,
-        marginBottom: 10,
+        marginBottom: 5,
+        marginTop: 9,
         paddingBottom: 5,
         backgroundColor: colorsTheme.darkBlueSecond, 
         borderWidth: 2, 
@@ -24,7 +25,7 @@ export const taskInput = StyleSheet.create({
         height: 75,
         width: '75%',
         borderRadius: 15,
-        marginBottom: 10,
+        marginBottom: 5,
         backgroundColor: colorsTheme.darkBlueSecond,
         borderWidth: 2,
         borderColor: colorsTheme.darkBlue,
@@ -34,7 +35,7 @@ export const taskInput = StyleSheet.create({
         width: '22%',
         alignItems: 'center',
         borderRadius: 15,
-        marginBottom: 10,
+        marginBottom: 5,
         backgroundColor: colorsTheme.darkBlueSecond,
         borderWidth: 2,
         borderColor: colorsTheme.darkBlue  
@@ -45,6 +46,11 @@ export const taskInput = StyleSheet.create({
         alignItems: 'center',
         height: 30,
         paddingHorizontal: 3,
+    },
+    validationContainer: {
+        height: 15,
+        marginTop: -8,
+        marginBottom: 3,
     },
     input: {
         marginHorizontal: 15,

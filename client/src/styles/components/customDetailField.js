@@ -1,14 +1,15 @@
 import { StyleSheet } from "react-native";
 import { colorsTheme } from "../colorsTheme";
-import { fontsTheme } from "../fontsTheme";
 
 export const customDetailField = StyleSheet.create({
     container: {
+        width: 300,
         flexDirection: 'row',
         justifyContent: 'flex-start',
-        alignItems: 'center',
+        alignItems: 'baseline',
         marginTop: 10,
         paddingLeft: 15,
+        paddingRight: 50,
     },
     descriptionContainer: {
         flexDirection: 'column',

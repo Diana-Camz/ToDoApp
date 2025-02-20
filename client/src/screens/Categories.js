@@ -4,15 +4,19 @@ import { containers } from '../styles/containers'
 import CustomIcon from '../components/CustomIcon'
 import { colorsTheme } from '../styles/colorsTheme'
 import CustomTitle from '../components/CustomTitle'
-import { useCategory } from '../hooks/useCategory'
+import { useCategoryForUser } from '../hooks/useCategoryForUser'
 import { FlatList } from 'react-native-gesture-handler'
 import Category from '../components/Category'
 import Loader from '../components/Loader'
+import { useTasks } from '../hooks/useTasks'
 
-const Categories = ({navigation}) => {
-    const {categories, loadingCategories} = useCategory([]);
+const Categories = ({navigation, route}) => {
+    const {user_id} = route.params;
+    const {tasks, loadingTasks} = useTasks(user_id);
+    const {categoriesForUser, loadingCategories} = useCategoryForUser(tasks);
 
-    if(loadingCategories){
+
+    if(loadingCategories || loadingTasks){
         return <Loader/>
     }
   return (
@@ -30,18 +34,24 @@ const Categories = ({navigation}) => {
             <CustomTitle title={'ALL CATEGORIES'} type='large'/>
         </View>
         <View style={containers.categoryList}>
-            <FlatList
-                data={categories}
+          {categoriesForUser.length == 0
+            ? <View style={containers.emptyData}>
+                <CustomTitle title={"You haven't any Category yet !!"} type='msgScreen' numberOfLines={0}/>
+              </View>
+            : <FlatList
+                data={categoriesForUser}
                 keyExtractor={item => item.category}
                 numColumns={2}
                 renderItem={({item}) => 
-                <Category
-                    title={item.category}
-                    tasks={item.count}
-                    navigation={navigation}
-                />}
-                showsVerticalScrollIndicator={false}
-            />
+              <Category
+                  title={item.category}
+                  tasks={item.count}
+                  image_url={item.image_url}
+                  user_id={user_id}
+                  navigation={navigation}
+              />}
+              showsVerticalScrollIndicator={false}
+          />}
         </View>
       </View>
     </View>

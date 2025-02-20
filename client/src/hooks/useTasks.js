@@ -1,30 +1,26 @@
-import { useEffect, useState } from "react"
-import exampleTask from "../data/exampleTask";
+import { useState, useEffect, useCallback} from "react"
+import { fetchTasks } from "../api/requests";
 
 
-export const useTasks = (id) => {
-    const [loadingTasks, setLoadingTasks] = useState(true);
-    const [tasks, setTasks] = useState(null);
+export const useTasks = (userId) => {
+    const [loadingTasks, setLoadingTasks] = useState(false);
+    const [tasks, setTasks] = useState([]);
 
-
-    const getTasksData = () => {
+    const getTasksData = useCallback(async () => {
+        setLoadingTasks(true)
         try {
-            const data = exampleTask.filter(task => task.userId === Number(id));
-            if (data.length > 0){
-                setTasks(data)
-            }else {
-                console.error(`Tasks with userId: ${id} not found`)
-            }
+            const data = await fetchTasks(userId)
+            setTasks(data)
         } catch (error) {
-            console.error('Error fetching tasks data')
+            console.error('Error fetching tasks data', error)
         } finally {
             setLoadingTasks(false)
         }
-    }
+    }, [userId]);
 
     useEffect(() => {
         getTasksData();
-    }, [id]);
+    }, [getTasksData]);
 
-    return {tasks, loadingTasks}
+    return {tasks, loadingTasks, setLoadingTasks, getTasksData}
 }

@@ -4,8 +4,8 @@ import { colorsTheme } from "./colorsTheme";
 export const containers = StyleSheet.create({
   main: {
     paddingHorizontal: 16,
-    paddingTop: 40,
-    paddingBottom: 40,
+    paddingTop: 10,
+    paddingBottom: 10,
     flex: 1,
     backgroundColor: colorsTheme.dark,
   },
@@ -13,7 +13,7 @@ export const containers = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: "space-between",
     alignItems: 'center',
-    marginTop: 15,
+    marginTop: 10,
   },
   userName_home: {
     height: 75,
@@ -64,24 +64,28 @@ export const containers = StyleSheet.create({
   },
   homeSectionTask: {
     width: 120,
-    marginRight: 30,
+    marginRight: 10,
     flexDirection: 'row',
-    alignItems: 'flex-end',
-    justifyContent: 'space-between',
+    justifyContent: 'flex-end',
   },
   createOrEdit: {
     flex: 1,
     height: "auto",
-    marginTop: 40,
+    marginTop: 20,
     marginHorizontal: 10,
     justifyContent: 'space-between',
-    paddingTop: 20,
+    paddingTop: 10,
     backgroundColor: colorsTheme.darkBlueThird,
     paddingHorizontal: 20,
     borderRadius: 15,
   },
   categoryList: {
     height: '90%',
+  },
+  emptyData: {
+    alignItems: 'center',
+    verticalAlign: 'center',
+    marginTop: 110,
   },
   nameContainer: {
     flexDirection: 'row',

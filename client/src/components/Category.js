@@ -1,15 +1,15 @@
 import { Pressable, View, Image } from 'react-native'
 import React from 'react'
 import {category} from '../styles/components/category'
-import imagesCategory from '../data/imagesCategory'
 import CustomTitle from './CustomTitle'
+import categoryImages from '../data/categoryImages'
 
-const Category = ({title, tasks, navigation}) => {
-  const categoryImage = imagesCategory.find(img => img.title === title)?.image || require('../images/default.png')
+const Category = ({title, tasks, image_url, navigation, user_id}) => {
+  const imageSource = categoryImages[image_url] || require("../../assets/default.png");
   return (
-      <Pressable onPress={() => {navigation.navigate('TaskList', {category: title})}} style={category.container}>
+      <Pressable onPress={() => {navigation.navigate('TaskList', {category: title, user_id: user_id})}} style={category.container}>
         <View>
-          <Image source={categoryImage} style={category.image}/>
+          <Image source={imageSource} style={category.image}/>
         </View>
         <View style={category.container_description}>
           <CustomTitle title={title} type='regular'/>

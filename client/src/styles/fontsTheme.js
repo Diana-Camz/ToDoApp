@@ -1,4 +1,3 @@
-import { StyleSheet } from "react-native";
 import { colorsTheme } from "./colorsTheme";
 
 export const fontsTheme = {
@@ -41,7 +40,7 @@ export const fontsTheme = {
     color: colorsTheme.darkGray,
   },
   field: {
-    fontSize: 16,
+    fontSize: 14,
     color: colorsTheme.lightGraySecond,
   },
   link: {
@@ -49,7 +48,7 @@ export const fontsTheme = {
     color: colorsTheme.lightBlueSecond,
   },
   default: {
-    fontSize: 15,
+    fontSize: 13,
     color: colorsTheme.white
   }, 
   red: {
@@ -77,6 +76,10 @@ export const fontsTheme = {
   inputFocused: {
     fontSize: 17,
     color: colorsTheme.lightBlueSecond,
-  }
+  },
+  validation: {
+    fontSize: 11,
+    color: colorsTheme.redDisabled,
+  },
 
 };

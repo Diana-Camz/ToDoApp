@@ -1,5 +1,5 @@
-import { View, ScrollView, Pressable,  } from 'react-native'
-import React, {useState} from 'react'
+import { Alert, View, ScrollView, Pressable,  } from 'react-native'
+import React, {useEffect, useState} from 'react'
 import DateTimePicker from "@react-native-community/datetimepicker";
 import { format } from 'date-fns';
 import { containers } from '../styles/containers'
@@ -13,19 +13,98 @@ import { useUser } from '../hooks/useUser'
 import CategoryModal from '../components/CategoryModal'
 import EmojiModal from '../components/EmojiModal';
 import { taskInput } from '../styles/components/taskInput';
+import { useUserContext } from '../context/userContext';
+import CustomButton from '../components/CustomButton';
+import { customButton } from '../styles/components/customButton';
+import { createTaskRequest } from '../api/requests';
 
 const CreateTask = ({navigation}) => {
-  const {user, loadingUser} = useUser(3);
+  const { user } = useUserContext();
+  const {userData, loadingUser} = useUser(user);
   const [focusedInput, setFocusedInput] = useState(null);
   const [selectedCategories, setSelectedCategories] = useState([]);
   const [categoryText, setCategoryText] = useState('');
+  const [priority, setPriority] = useState("low")
   const [modalVisible, setModalVisible] = useState(null);
   const [selectedDate, setSelectedDate] = useState(null);
+  const [formattedDate, setFormattedDate] = useState(null);
+  const [formattedTime, setFormattedTime] = useState(null);
   const [selectedTime, setSelectedTime] = useState(null);
   const [date, setDate] = useState(new Date());
-  const [selectedEmoji, setSelectedEmoji] = useState('😊')
+  const [selectedEmoji, setSelectedEmoji] = useState('😊');
+  const [loading, setLoading] = useState(false);
+  const [errors, setErrors] = useState({});
+  const [newTask, setNewTask] = useState({
+    title: '',
+    status: false,
+    date: null,
+    time: null,
+    priority: priority,
+    description: '',
+    emoji: selectedEmoji,
+    user_id: user,
+    categories: [],
+  })
 
-  if(loadingUser) {
+  const handleCreateTask = () => {
+    const validationErrors = validateForm();
+    setErrors(validationErrors);
+
+    if(Object.keys(validationErrors).length === 0){
+      saveTask()
+    }
+  }
+
+  const saveTask =  async() => {
+    setLoading(true)
+    try {
+      const response = await createTaskRequest(newTask);
+      if(response.ok){
+        Alert.alert('Task Created', 'Your task has been created correctly', [
+          {text: 'Ok', onPress: () => navigation.navigate('Home')}
+        ])
+      } else {
+        Alert.alert('Error', 'There has been an error creating your task, please try again.', [
+          {text: 'Try Again', onPress: () => navigation.navigate('Home')}
+        ])
+      }
+    } catch (error) {
+      console.error('Error creating tasks', error)
+    }finally{
+      setLoading(false)
+    }
+  }
+
+  useEffect(()=> {
+    setNewTask((prev) => ({
+      ...prev,
+      date: formattedDate,  
+      time: formattedTime,
+      priority: priority,
+      categories: selectedCategories, 
+      emoji: selectedEmoji,
+    }));
+  }, [formattedDate, formattedTime, priority, selectedCategories, selectedEmoji]);
+
+  function formatDate(dateString) {
+    const formatDate = new Date(dateString).toISOString().split('T')[0];
+    setFormattedDate(formatDate)
+  }
+  function formatTime(dateString) {
+    const formatTime = new Date(dateString).toISOString().split('T')[1].split('.')[0];
+    setFormattedTime(formatTime)
+  }
+
+  const validateForm = () => {
+    const newErrors = {};
+    if (!newTask.title.trim()) newErrors.title = 'Task must contain a title.';
+    if (!newTask.date) newErrors.date = 'Please select a date.';
+    if (!newTask.time) newErrors.time = 'Please select a time.';
+    if (newTask.categories.length === 0) newErrors.categories = 'Select at least one category.';
+    return newErrors;
+  };
+
+  if(loadingUser || loading) {
     return (
     <Loader/>
     )
@@ -35,7 +114,7 @@ const CreateTask = ({navigation}) => {
     <View style={containers.main}>
       <View style={containers.header}>
         <CustomIcon onPress={() => navigation.goBack()} iconName="arrow-back" size={35} color={colorsTheme.darkBlue}/>
-        <CustomUserName {...user}/>
+        <CustomUserName {...userData}/>
       </View>
       <View>
         <CustomTitle title={"Let's do something else !!"} type='msgScreen' numberOfLines={0}/>
@@ -45,7 +124,9 @@ const CreateTask = ({navigation}) => {
           <View style={containers.nameContainer}>
             <TaskInput 
               title={'Name'}
-              placeholder={'Read for 20 minutes'}  
+              placeholder={'Read for 20 minutes'}
+              onChangeText={(val) => setNewTask((prev) => ({...prev, title:val}))}
+              value={newTask.title} 
               iconName='pencil-sharp'
               maxLength={30}
               isFocused={focusedInput === 'Name'}
@@ -59,6 +140,10 @@ const CreateTask = ({navigation}) => {
                 <CustomTitle title={selectedEmoji} type='xlarge'/>
             </Pressable>
           </View>
+          <View style={taskInput.validationContainer}>
+            {errors.title && <CustomTitle title={errors.title} type='validation' />}  
+          </View>
+
           <Pressable onPress={() => {setModalVisible('Date'); setFocusedInput('Date');}}>
             <TaskInput 
               title={'Date'} 
@@ -72,6 +157,10 @@ const CreateTask = ({navigation}) => {
               onBlur={() => setFocusedInput(null)}
             />
           </Pressable>
+          <View style={taskInput.validationContainer}>
+            {errors.date && <CustomTitle title={errors.date} type='validation' />}  
+          </View>
+
           <Pressable onPress={() => {setModalVisible('Time'); setFocusedInput('Time');}}>
             <TaskInput 
               title={'Time'}
@@ -85,6 +174,10 @@ const CreateTask = ({navigation}) => {
               onBlur={() => setFocusedInput(null)}
               />
           </Pressable>
+          <View style={taskInput.validationContainer}>
+            {errors.time && <CustomTitle title={errors.time} type='validation' />}  
+          </View>
+
           <Pressable onPress={() => {setModalVisible('Category'); setFocusedInput('Category');}}>
             <TaskInput 
               title={'Category'} 
@@ -100,17 +193,26 @@ const CreateTask = ({navigation}) => {
               onBlur={() => setFocusedInput(null)}
               />
           </Pressable>
+          <View style={taskInput.validationContainer}>
+            {errors.categories && <CustomTitle title={errors.categories} type='validation' />}  
+          </View>
+
           <TaskInput 
             title={'Priority'}  
             iconName='podium'
             isFocused={focusedInput === 'Priority'}
             onFocus={() => setFocusedInput('Priority')}
             onBlur={() => setFocusedInput(null)}
+            priority={priority}
+            setPriority={setPriority}
             />
           <TaskInput 
-            title={'Description'} 
+            title={'Description'}
+            onChangeText={(val) => setNewTask((prev) => ({...prev, description:val}))}
+            value={newTask.description} 
             placeholder={'Read more was a new year purpouse'} 
             iconName='clipboard'
+            multiline={true}
             isFocused={focusedInput === 'Description'}
             onFocus={() => setFocusedInput('Description')}
             onBlur={() => setFocusedInput(null)}
@@ -128,6 +230,8 @@ const CreateTask = ({navigation}) => {
           modalVisible={modalVisible === 'Emoji'} 
           setModalVisible={setModalVisible} 
           setSelectedEmoji={setSelectedEmoji}
+          selectedEmoji={selectedEmoji}
+          screen={'createScreen'}
         />
         {modalVisible === 'Date' && (
           <DateTimePicker
@@ -136,7 +240,8 @@ const CreateTask = ({navigation}) => {
             display="calendar"
             onChange={(event, selected) => {
               if(selected){
-                setSelectedDate(selected);
+                formatDate(selected);
+                setSelectedDate(selected)
                 setDate(selected)
               }
               setModalVisible(null)
@@ -150,13 +255,17 @@ const CreateTask = ({navigation}) => {
             display="default"
             onChange={(event, selected) => {
               if(selected){
-                setSelectedTime(selected);
+                formatTime(selected);
+                setSelectedTime(selected)
                 setDate(selected)
               }
               setModalVisible(null)
             }}
           />
         )}
+        <View style={customButton.container}>
+          <CustomButton onPress={()=> handleCreateTask()} title={'Create Task'} container={customButton.blueContainer}/>
+        </View>
     </View>
   )
 }

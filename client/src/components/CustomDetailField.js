@@ -1,5 +1,6 @@
 import { Text, View } from 'react-native'
 import React from 'react'
+import { format, parse } from 'date-fns';
 import CustomTitle from './CustomTitle';
 import { customDetailField } from '../styles/components/customDetailField'
 import { fontsTheme } from '../styles/fontsTheme';
@@ -36,7 +37,20 @@ const CustomDetailField = ({field, value}) => {
         ? (<View style={customDetailField.textContainer}>
             <CustomTitle title={value} type='medium' numberOfLines={0}/>
           </View>)
-        : <Text style={getDynamicStyle()}>{field === 'status' ? (value ? 'Completed' : 'Pending') : value}</Text>
+        : field === 'categories'
+        ? (
+          <Text style={[getDynamicStyle(), { flexWrap: "wrap" }]} numberOfLines={0}>
+            {value}
+          </Text>
+        ): field === 'date' ? (
+          <Text style={getDynamicStyle()}>
+            {format(new Date(value), 'MMMM d, yyyy')}
+          </Text>
+        ) : field === 'time' ? (
+          <Text style={getDynamicStyle()}>
+            {format(parse(value, 'HH:mm:ss', new Date()), 'hh:mm a')}
+          </Text>
+        ): (<Text style={getDynamicStyle()}>{field === 'status' ? (value ? 'Completed' : 'Pending') : value}</Text>)
       }
     </View>
   )

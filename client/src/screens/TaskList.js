@@ -11,8 +11,8 @@ import Task from '../components/Task'
 import { taskList } from '../styles/screens/taskList'
 
 const TaskList = ({navigation, route}) => {
-    const {category, showAll} = route.params || {};
-    const {tasks, loadingTasks} = useTasks(5);
+    const {category, user_id, showAll} = route.params || {};
+    const {tasks, loadingTasks, getTasksData} = useTasks(user_id);
     const [openTaskId, setOpenTaskId] = useState(null);
     const swipeableRef = useRef(null);
 
@@ -20,18 +20,20 @@ const TaskList = ({navigation, route}) => {
     const filteredTasks = showAll
         ? tasks || []
         : category
-            ? (tasks || []).filter(task => task.category.includes(category))
+            ? (tasks || []).filter(task => Array.isArray(task.categories)
+                ? task.categories.includes(category)
+                : String(task.categories).includes(category))
             : [];
 
-            if(loadingTasks || (filteredTasks.length === 0 && !showAll)){
-                return <Loader/>
-            }
+            if(loadingTasks){
+              return <Loader/>
+          }
 
   return (
     <View style={containers.main}>
       <View style={containers.header}>
         <CustomIcon 
-            onPress={() => navigation.goBack()} 
+            onPress={() => navigation.navigate('Home')} 
             iconName="arrow-back" 
             size={35} 
             color={colorsTheme.darkBlue}
@@ -39,19 +41,27 @@ const TaskList = ({navigation, route}) => {
       </View>
       <View>
         <View style={containers.homeSections}>
-            <CustomTitle title={category? `${category} Tasks` : 'ALL TASKS'} type='large'/>
+            <CustomTitle title={category? `${category.toUpperCase()} TASKS` : 'ALL TASKS'} type='large'/>
         </View>
         <View style={taskList.container}>
-            <FlatList
+            {tasks.length == 0 || filteredTasks.length == 0
+            ? <View style={containers.emptyData}>
+                <CustomTitle title={"You haven't any Tasks yet !!"} type='msgScreen' numberOfLines={0}/>
+              </View>
+            : <FlatList
                 data={filteredTasks}
-                keyExtractor={item => item.id.toString()}
+                keyExtractor={item => item.task_id.toString()}
+                extraData={tasks}
                 renderItem={({item}) => 
-                    <Task {...item} 
-                      openTaskId={openTaskId} 
-                      setOpenTaskId={setOpenTaskId} 
-                      swipeableRef={swipeableRef}/>}
-                showsVerticalScrollIndicator={false}
-            />
+                  <Task {...item} 
+                    user_id={item.user_id}
+                    openTaskId={openTaskId} 
+                    setOpenTaskId={setOpenTaskId} 
+                    swipeableRef={swipeableRef}
+                    getTasksData={getTasksData}
+                  />}
+            showsVerticalScrollIndicator={false}
+        />}
         </View>
       </View>
     </View>

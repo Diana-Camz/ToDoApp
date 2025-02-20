@@ -1,19 +1,15 @@
 import { useEffect, useState } from "react";
-import exampleUsers from '../data/exampleUsers'
+import { fetchUser } from "../api/requests";
 
 
 export const useUser = (id) => {
     const [loadingUser, setLoadingUser] = useState(true);
-    const [user, setUser] = useState(null);
+    const [userData, setUser] = useState(null);
 
-    const getUserData = () => {
+    const getUserData = async () => {
         try {
-            const data =  exampleUsers.find(user => user.id === String(id));
-            if( data ) {
-                setUser(data)
-            } else {
-                console.error(`User with ID ${id} not found`)
-            }
+            const data =  await fetchUser(id);
+            setUser(data);
         } catch (error) {
             console.error('Error fetching user data');
         } finally {
@@ -25,5 +21,5 @@ export const useUser = (id) => {
         getUserData()
     }, [id]);
 
-    return {user, loadingUser}
+    return {userData, loadingUser}
 }
