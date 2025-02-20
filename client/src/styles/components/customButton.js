@@ -3,12 +3,13 @@ import { colorsTheme } from "../colorsTheme";
 
 export const customButton = StyleSheet.create({
   container:{
+    flexDirection: 'row',
     alignItems: 'center',
   },
   darkContainer: {
     backgroundColor: colorsTheme.dark,
     height: 54,
-    width: 328,
+    width: '40%',
     alignItems: "center",
     justifyContent: "center",
     borderRadius: 15,

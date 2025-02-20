@@ -76,6 +76,10 @@ export const fontsTheme = {
   inputFocused: {
     fontSize: 17,
     color: colorsTheme.lightBlueSecond,
-  }
+  },
+  validation: {
+    fontSize: 11,
+    color: colorsTheme.redDisabled,
+  },
 
 };

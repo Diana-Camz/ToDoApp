@@ -11,28 +11,33 @@ import { selCategory } from '../styles/components/selCategory';
 import { useAllCategories } from '../hooks/useAllCategories';
 
 
-const CategoryModal = ({ task, modalVisible, setModalVisible, setCategoryText, selectedCategories, setSelectedCategories }) => {
+const CategoryModal = ({ modalVisible, setModalVisible, setCategoryText, selectedCategories, setSelectedCategories }) => {
     const {allCategories} = useAllCategories();
 
     useEffect(() => {
-        if (task?.categories && !selectedCategories.length === 0) {
-            const selected = task.categories.split(' | ').map(cat => cat.trim());
-            setSelectedCategories(selected);
-            setCategoryText(selected.join(' | '));
+        if (modalVisible && selectedCategories.length > 0) {
+          const selectedCategoryNames = allCategories
+            .filter((category) => selectedCategories.includes(category.id))
+            .map((category) => category.name);
+    
+          setCategoryText(selectedCategoryNames.join(' | '));
         }
-    }, [task?.categories]);
-
-    const toggleCategory = (category) => {
+      }, [modalVisible, allCategories, selectedCategories, setCategoryText]);
+   
+    const toggleCategory = (categoryId) => {
         setSelectedCategories(prevCategories =>
-           prevCategories.includes(category)
-          ? prevCategories.filter(cat => cat !== category)
-          : [...prevCategories, category]
+           prevCategories.includes(categoryId)
+          ? prevCategories.filter(id => id !== categoryId)
+          : [...prevCategories, categoryId]
         )
     }
 
     const handleDone = () => {
-        setCategoryText(selectedCategories.join(' | '));
-            setModalVisible(false);
+        const selectedCategoryNames = allCategories
+            .filter((category) => selectedCategories.includes(category.id))
+            .map((category) => category.name);
+        setCategoryText(selectedCategoryNames.join(' | '));
+        setModalVisible(false);
     }
 
 
@@ -59,8 +64,8 @@ const CategoryModal = ({ task, modalVisible, setModalVisible, setCategoryText, s
                                 <SelectCategory   
                                     title={item.name}
                                     image_url={item.image_url}
-                                    onPress={() => toggleCategory(item.name)}
-                                    style={[selCategory.container, selectedCategories.includes(item.name) && selCategory.containerSelected]}
+                                    onPress={() => toggleCategory(item.id)}
+                                    style={[selCategory.container, selectedCategories.includes(item.id) && selCategory.containerSelected]}
                                 />
                                 }
                             />

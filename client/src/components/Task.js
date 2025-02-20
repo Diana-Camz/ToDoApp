@@ -9,6 +9,7 @@ import { task } from '../styles/components/task'
 import { useNavigation } from '@react-navigation/native'
 import CustomTitle from './CustomTitle'
 import { useDeleteTask } from '../hooks/useDeleteTask';
+import { updateToggleCompleted } from '../api/requests';
 
 
 const RightAction = ({prog, drag, user_id, task_id, getTasksData}) => {
@@ -92,6 +93,17 @@ const Task = ({title, emoji, time, status, priority, task_id, user_id, openTaskI
             default: return colorsTheme.green;
         }
     };
+
+
+  const handleToggleCompletion = async () => {
+    const newCompletion = !completed;
+    setCompleted(newCompletion);
+     const response = await updateToggleCompleted(user_id, task_id, newCompletion);
+    if (!response) {
+      console.error('Error updating completion.');
+      setCompleted(!newCompletion);
+    }
+  };
   return (
         <ReanimatedSwipeable
             key={task_id}
@@ -113,7 +125,7 @@ const Task = ({title, emoji, time, status, priority, task_id, user_id, openTaskI
             >
                 <View style={task.ellipseContainer}>
                     <CustomIcon 
-                        onPress={() => setCompleted(!completed)}
+                        onPress={handleToggleCompletion}
                         iconName={completed ?'checkmark-circle' : 'ellipse-outline'} 
                         color={completed ? colorsTheme.green : colorsTheme.darkGray} 
                         size={40}/>

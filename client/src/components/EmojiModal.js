@@ -6,7 +6,17 @@ import CustomIcon from './CustomIcon'
 import EmojiSelector from 'react-native-emoji-selector'
 import CustomTitle from './CustomTitle'
 
-const EmojiModal = ({modalVisible, setModalVisible, setSelectedEmoji}) => {
+const EmojiModal = ({modalVisible, setModalVisible, setSelectedEmoji, setNewValues, screen}) => {
+    const handleEmojiSelect = (selectedEmoji) => {
+        setSelectedEmoji(selectedEmoji);
+        {screen === 'editScreen' 
+            ? setNewValues((prev) => ({
+            ...prev,
+            emoji: selectedEmoji,
+            }))
+            : null}
+        setModalVisible(false);
+      };
   return (
     <Modal visible={modalVisible} animationType="slide" transparent={true}>
         <View style={emojiModal.modalBackground}>
@@ -25,10 +35,7 @@ const EmojiModal = ({modalVisible, setModalVisible, setSelectedEmoji}) => {
                 </View>
                 <View style={emojiModal.emojiContainer}>
                 <EmojiSelector
-                    onEmojiSelected={emoji => 
-                        {setSelectedEmoji(emoji);
-                        setModalVisible(null)}
-                    }
+                    onEmojiSelected={handleEmojiSelect}
                     showSearchBar={false}
                     showTabs={false}
 
