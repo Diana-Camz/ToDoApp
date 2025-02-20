@@ -5,11 +5,11 @@ import {
   getTasksWithCategories,
   getTaskWithCategories,
   createTask,
-    getAllCategories,
-    toggleStatus,
-    deleteTask,
-    createTaskCategory,
-    updateTask,
+  getAllCategories,
+  toggleStatus,
+  deleteTask,
+  createTaskCategory,
+  updateTask,
  } from "./database.js";
 
  const corsOptions = {
@@ -24,6 +24,8 @@ app.use(cors(corsOptions));
 
 
  //GET//
+
+ //user data
  app.get('/users/:id', async(req, res)=>{
     try {
       const user = await getUserByID(req.params.id);
@@ -34,6 +36,7 @@ app.use(cors(corsOptions));
     }
  });
 
+ //one task with category/ies of user
  app.get('/users/:user_id/tasks/:task_id', async(req, res)=>{
     try {
       const { user_id, task_id } = req.params;
@@ -50,6 +53,7 @@ app.use(cors(corsOptions));
     }
  });
 
+ //all tasks with category/ies of user
  app.get('/users/:user_id/tasks', async(req, res)=> {
    try {
       const userId = req.params.user_id;
@@ -61,6 +65,7 @@ app.use(cors(corsOptions));
    }
  });
 
+ //all predetermined categories
  app.get('/categories', async(req, res)=> {
     try {
       const categories = await getAllCategories();
@@ -73,15 +78,20 @@ app.use(cors(corsOptions));
 
 
  //CREATE//
+ //create new task
  app.post('/users/:user_id/tasks', async (req, res) => {
    try {
        const {title, status, date, time, priority, description, emoji, user_id, categories} = req.body;
-       const task = await createTask(title, status, date, time, priority, description, emoji, user_id);
+       const task = await createTask(title, status, date, time, priority, description, emoji, user_id)
 
        if(categories && categories.length > 0){
+           if(task.task_id){
             await Promise.all(categories.map((category_id) => createTaskCategory(task.task_id, category_id)));
+           }else{
+            console.error('task_id not found')
+           }
        }
-       res.status(201).send({status: "ok", task});
+       res.status(201).send(task);
    } catch (error) {
       console.error("Error creating task:", error);
       res.status(500).json({ message: 'Error creating a task in /users/:user_id/tasks' });
@@ -89,19 +99,33 @@ app.use(cors(corsOptions));
 });
 
 //UPDATE//
+//update existing task
  app.put('/users/:user_id/tasks/:task_id', async(req, res)=> {
     try {
-      const task_id = req.params.id;
+      const{ task_id }= req.params;
       const updatedTask = await updateTask(task_id, req.body);
-      //const task = await toggleStatus(req.params.id, value);
-      res.status(202).send({status: "ok", updatedTask});
+      res.status(202).send(updatedTask);
     } catch (error) {
       console.error("Error updating task:", error);
       res.status(500).json({ message: 'Error updating task in /users/:user_id/tasks/:task_id' });
     }
  });
 
+//update status either is completed or not
+ app.put('/users/:user_id/tasks/:task_id/status', async(req, res)=> {
+  const {task_id} = req.params;
+  const {value} = req.body;
+  try {
+    const completed = await toggleStatus(task_id, value);
+    res.status(200).send(completed)
+  } catch (error) {
+    console.error('Error updating task status:', error);
+    res.status(500).json({ message: 'Error updating task.' });
+  }
+ })
+
 //DELETE//
+//delete one task
 app.delete('/users/:user_id/tasks/:task_id', async(req, res)=> {
     try {
       const {task_id} = req.params;

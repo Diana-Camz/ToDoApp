@@ -52,7 +52,6 @@ export async function getTaskWithCategories(task_id, user_id) {
          GROUP BY t.id;`,
         [task_id, user_id]
     );
-    
     return rows.length > 0 ? rows[0] : null;
 };
 
@@ -69,7 +68,7 @@ export async function createTaskCategory(task_id, category_id) {
     const [result] = await pool.query(
         `INSERT INTO task_categories (task_id, category_id)
          VALUES (?, ?)`, [task_id, category_id]); 
-         //return result;
+         return result;
 }
 
 //UPDATE
@@ -108,11 +107,10 @@ export async function updateTaskCategories(task_id, categories){
     }
 }
 
-export async function toggleStatus(id, value){
-    const newValue = value === true ? "TRUE" : "FALSE";
+export async function toggleStatus(taskId, value){
     const [result] = await pool.query(
-        `UPDATE tasks SET status = ${newValue} WHERE id = ?`,
-        [id]
+        `UPDATE tasks SET status = ? WHERE id = ?`,
+        [value, taskId]
     );
     return result;
 }

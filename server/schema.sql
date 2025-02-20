@@ -15,7 +15,7 @@ CREATE TABLE tasks (
     status BOOLEAN DEFAULT false,
     date DATE NOT NULL,
     time TIME NOT NULL,
-    priority ENUM('low', 'medium', 'high') NOT NULL,
+    priority ENUM("low", "medium", "high") NOT NULL,
     description TEXT,
     emoji VARCHAR(10) NOT NULL,
     user_id INT NOT NULL,
