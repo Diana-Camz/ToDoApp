@@ -25,7 +25,7 @@ const TaskList = ({navigation, route}) => {
                 : String(task.categories).includes(category))
             : [];
 
-            if(loadingTasks || (filteredTasks.length === 0 && !showAll)){
+            if(loadingTasks){
               return <Loader/>
           }
 
@@ -44,7 +44,7 @@ const TaskList = ({navigation, route}) => {
             <CustomTitle title={category? `${category.toUpperCase()} TASKS` : 'ALL TASKS'} type='large'/>
         </View>
         <View style={taskList.container}>
-            {tasks.length == 0
+            {tasks.length == 0 || filteredTasks.length == 0
             ? <View style={containers.emptyData}>
                 <CustomTitle title={"You haven't any Tasks yet !!"} type='msgScreen' numberOfLines={0}/>
               </View>

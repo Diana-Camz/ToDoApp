@@ -56,7 +56,7 @@ const DetailTask = ({navigation, route,}) => {
   return (
     <View style={containers.main}>
       <View style={containers.header}>
-        <CustomIcon onPress={() => navigation.goBack()} iconName="arrow-back" size={35} color={colorsTheme.darkBlue}/>
+        <CustomIcon onPress={() => navigation.navigate('Home')} iconName="arrow-back" size={35} color={colorsTheme.darkBlue}/>
         <CustomUserName {...userData}/>
       </View>
       <View>

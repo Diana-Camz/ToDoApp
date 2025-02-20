@@ -15,7 +15,7 @@ import { useCategoryForUser } from '../hooks/useCategoryForUser'
 
 
 
-const Home = ({navigation, route}) => {
+const Home = ({navigation}) => {
   const { user } = useUserContext();
   const {userData, loadingUser} = useUser(user);
   const {tasks, loadingTasks, getTasksData} = useTasks(user);
