@@ -95,6 +95,10 @@ npm test
 ```
 
 ## Screenshots
+| Home | Detail Task |Create Task | Delete Task |
+| -----|-------------|-------------------|-------------|
+| ![image](https://github.com/user-attachments/assets/ddd17745-39da-470c-bd98-a6b96caea823)  | ![image](https://github.com/user-attachments/assets/d5871c30-c712-4cdb-a18a-d0c1bc7bf981) | ![image](https://github.com/user-attachments/assets/9b45ea80-209d-4c6f-b5b6-fd63daf82b72) |  ![image](https://github.com/user-attachments/assets/f1cdb5de-ec19-4a1f-bac4-28ed9542e02a) |
+
 
 ## Contributing Guidelines
 ### How to Contribute:
